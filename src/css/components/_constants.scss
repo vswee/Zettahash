@@ -5,10 +5,11 @@ $small: 756px;
 $x-small: 500px;
 
 $font-large: 60px;
-$font-medium: 50px;
-$font-small: 40px;
+$font-medium: $font-large / 1.62;
+$font-small: $font-medium / 1.62;
 $title-line-height: 1.1;
 
 
-$title: '', mono;
-$sans-serif: '', Arial, Helvetica, sans-serif;
+$title: 'Orbitron', mono;
+$font-family: 'Orbitron', Arial, Helvetica, sans-serif;
+$sans-serif: 'Roboto', Arial, Helvetica, sans-serif;

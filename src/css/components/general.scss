@@ -1,1 +1,19 @@
-
+body{
+  font-family: $font-family;
+  background-color: var(--neutral-9);
+  color: var(--neutral-1);
+  margin:0;
+  padding:0;
+}
+a{
+  color: inherit;
+  text-transform: none;
+  text-decoration: none;
+}
+*{
+  box-sizing: border-box;
+}
+.main{
+  max-width: $content;
+  margin: 0 auto;
+}

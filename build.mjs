@@ -29,6 +29,7 @@ function makePage(directory) {
   dist += head
   let nav = String(fs.readFileSync('./components/nav.ejs'))
   nav = nav.replace(/\$name/g, variables.SITE_NAME)
+  nav = nav.replace(/\$site/g, variables.BASE_URL)
 
   let bodyWrapper = String(fs.readFileSync('./components/body-wrapper.ejs'))
   let body = fs.readFileSync('./pages/' + directory + '/index.ejs', { encoding: 'utf8', flag: 'r' })
