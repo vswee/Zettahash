@@ -1,19 +1,316 @@
-body{
+body {
   font-family: $font-family;
   background-color: var(--neutral-9);
   color: var(--neutral-1);
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
 }
-a{
+a {
   color: inherit;
   text-transform: none;
   text-decoration: none;
 }
-*{
+* {
   box-sizing: border-box;
 }
-.main{
+.main-wrapper{
+    overflow: hidden;}
+.main {
   max-width: $content;
   margin: 0 auto;
+  > .content {
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $content;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  font-size: 18px;
+  padding: calc(2rem / #{$r}) calc((2rem / #{$r}) * 2);
+  background: var(--primary);
+  color: var(--neutral-8);
+  transition: 200ms ease;
+  cursor: pointer;
+  line-height: 1;
+  gap: 10px;
+  border-radius: 100px;
+  &:hover {
+    background: var(--secondary);
+    color: var(--neutral-10);
+  }
+}
+
+.btn-link {
+  color: var(--secondary);
+  box-shadow: 0 0 0 1px;
+  padding: 5px 15px;
+  border-radius: 100px;
+  transition: 200ms ease;
+  &:hover {
+    background: var(--secondary);
+    color: var(--neutral-10);
+  }
+}
+
+.content {
+  margin-bottom: 100px;
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+  h2 {
+    text-align: center;
+    font-size: 40px;
+    @media (max-width: $content) {
+      font-size: 35px;
+    }
+    @media (max-width: $small) {
+      font-size: 30px;
+    }
+    @media (max-width: $x-small) {
+      font-size: 25px;
+    }
+  }
+  h3 {
+    font-size: 30px;
+    @media (max-width: $content) {
+      font-size: 28px;
+    }
+    @media (max-width: $small) {
+      font-size: 25px;
+    }
+    @media (max-width: $x-small) {
+      font-size: 22px;
+    }
+    i {
+      font-size: 50px;
+      margin-bottom: 1rem;
+      @media (max-width: $content) {
+        font-size: 45px;
+      }
+      @media (max-width: $small) {
+        font-size: 40px;
+      }
+      @media (max-width: $x-small) {
+        font-size: 35px;
+      }
+    }
+  }
+  p {
+    font-family: $sans-serif;
+    line-height: 1.5;
+    font-size: calc(30px / #{$r});
+    @media (max-width: $content) {
+      font-size: calc(28px / #{$r});
+    }
+    @media (max-width: $small) {
+      font-size: calc(25px / #{$r});
+    }
+    @media (max-width: $x-small) {
+      font-size: calc(22px / #{$r});
+    }
+  }
+  > p {
+    max-width: 80%;
+    text-align: center;
+    margin: 1rem auto;
+  }
+  > small {
+    margin: 1rem auto;
+    width: 100%;
+    text-align: center;
+    display: block;
+    color: var(--secondary);
+    font-family: $sans-serif;
+    font-size: #{40px / $r};
+    @media (max-width: $content) {
+      font-size: #{35px / $r};
+    }
+    @media (max-width: $small) {
+      font-size: #{30px / $r};
+    }
+    @media (max-width: $x-small) {
+      font-size: #{25px / $r};
+    }
+  }
+  .fan {
+    .item {
+      h3 {
+        font-size: 30px;
+        @media (max-width: $content) {
+          font-size: 28px;
+        }
+        @media (max-width: $small) {
+          font-size: 25px;
+        }
+        @media (max-width: $x-small) {
+          font-size: 22px;
+        }
+        i {
+          font-size: 50px;
+          margin-bottom: 1rem;
+          @media (max-width: $content) {
+            font-size: 45px;
+          }
+          @media (max-width: $small) {
+            font-size: 40px;
+          }
+          @media (max-width: $x-small) {
+            font-size: 35px;
+          }
+        }
+      }
+      p {
+        font-family: $sans-serif;
+        line-height: 1.5;
+        font-size: calc(30px / #{$r});
+        @media (max-width: $content) {
+          font-size: calc(28px / #{$r});
+        }
+        @media (max-width: $small) {
+          font-size: calc(25px / #{$r});
+        }
+        @media (max-width: $x-small) {
+          font-size: calc(22px / #{$r});
+        }
+      }
+    }
+  }
+  .fan-trio {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    @media (max-width: $medium) {
+      flex-direction: column;
+      justify-content: center;
+    }
+    .item {
+      display: grid;
+      gap: 20px;
+      padding: 20px;
+      border-radius: 20px;
+      background-color: var(--neutral-8);
+      width: calc(30vw - 60px);
+      margin-bottom: auto;
+      &:first-of-type {
+        transition: 100ms ease;
+        opacity: var(--dec);
+        transform: translateX(calc(-50% + (var(--pc) * 0.5))) rotate(calc(-10deg + (var(--deg) * 0.1)));
+        transform-origin: 100% 0%;
+      }
+      &:last-of-type {
+        transition: 100ms ease;
+        opacity: var(--dec);
+        transform: translateX(calc(50% - (var(--pc) * 0.5))) rotate(calc(10deg - (var(--deg) * 0.1)));
+        transform-origin: 0% 0%;
+      }
+      @media (max-width: $content) {
+        width: 300px;
+      }
+      @media (max-width: $medium) {
+        width: 100%;
+      }
+    }
+  }
+  .fan-quad {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    @media (max-width: $medium) {
+      flex-direction: column;
+      justify-content: center;
+    }
+    .item {
+      display: grid;
+      gap: 20px;
+      padding: 20px;
+      border-radius: 20px;
+      background-color: var(--neutral-8);
+      width: calc(25vw - 60px);
+      margin-bottom: auto;
+      transition: 100ms ease;
+      opacity: 0;
+
+      &:nth-of-type(1) {
+        opacity: var(--dec);
+        transform: translateX(calc(-50% + (var(--pc) * 0.5))) rotate(calc(-5deg + (var(--deg) * 0.05)));
+        transform-origin: 100% 0%;
+      }
+      &:nth-of-type(2) {
+        opacity: var(--dec);
+        transform: translateX(calc(-25% + (var(--pc) * 0.25))) rotate(calc(-2deg + (var(--deg) * 0.02)));
+        transform-origin: 100% 0%;
+      }
+      &:nth-of-type(3) {
+        opacity: var(--dec);
+        transform: translateX(calc(25% - (var(--pc) * 0.25))) rotate(calc(2deg - (var(--deg) * 0.02)));
+        transform-origin: 0% 0%;
+      }
+      &:nth-of-type(4) {
+        opacity: var(--dec);
+        transform: translateX(calc(50% - (var(--pc) * 0.5))) rotate(calc(5deg - (var(--deg) * 0.05)));
+        transform-origin: 0% 0%;
+      }
+
+      @media (max-width: $content) {
+        width: 300px;
+      }
+      @media (max-width: $medium) {
+        width: 100%;
+      }
+    }
+  }
+  .flex {
+    display: flex;
+    gap: 40px;
+    margin-top: 50px;
+    @media (max-width: $small) {
+      display: grid;
+      justify-content: center;
+    }
+    .graphic {
+      width: #{($content / 2) - 40px};
+      max-width: 80vw;
+      background-color: var(--neutral-8);
+      border-radius: 30px;
+      aspect-ratio: 1/1;
+      &.clip{overflow: hidden;}
+      &.stage{background: radial-gradient(var(--neutral-7), var(--neutral-5));}
+      @media (max-width: $small) {
+        grid-row: 1/2;
+      }
+      #pie-gradation {
+        min-width: 200%;
+        min-height: 200%;
+        margin-left: 50%;
+        transition: 100ms ease;
+        transform: translateX(-50%) translateY(calc(-50% - (var(--pc) * 0.1))) rotate(var(--deg-raw));
+        margin-top: 125%;
+      }
+      #chart-0 {
+        transform: rotate3d(2, 2, 0, calc(66deg - (var(--deg-raw) * 0.6)))scale(1.2)translateX(calc(0% + (var(--pc-raw) * 0.1)));
+      }
+      #chart-1 {
+        transform: rotate3d(2, 2, 0, calc(-66deg + (var(--deg-raw) * 0.6)))scale(1.2)translateX(calc(0% - (var(--pc-raw) * 0.1)));
+      }
+    }
+    .text-box {
+      display: grid;
+      justify-items: start;
+      gap: 20px;
+      width: #{($content / 2) - 40px};
+      max-width: 80vw;
+      margin-bottom: auto;
+      p {
+        font-family: $sans-serif;
+      }
+    }
+  }
 }

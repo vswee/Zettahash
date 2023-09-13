@@ -80,7 +80,7 @@ function makePage(directory) {
 
 
 //PERFORMING BUILD
-const mainFolders = ["./dist", "./dist/src", "./dist/src/css", "./dist/src/fonts", "./dist/src/img", "./dist/src/js"]
+const mainFolders = ["./dist", "./dist/src", "./dist/src/css", "./dist/src/fonts", "./dist/src/img", "./dist/src/video", "./dist/src/js"]
 for (const folder of mainFolders) { reCreateFolders(folder) }
 consolidateAssets()
 

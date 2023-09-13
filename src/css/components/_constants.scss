@@ -4,9 +4,11 @@ $medium: 960px;
 $small: 756px;
 $x-small: 500px;
 
+$r:1.62;
+
 $font-large: 60px;
-$font-medium: $font-large / 1.62;
-$font-small: $font-medium / 1.62;
+$font-medium: $font-large / #{$r};
+$font-small: $font-medium / #{$r};
 $title-line-height: 1.1;
 
 

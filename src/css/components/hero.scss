@@ -1,1 +1,115 @@
+.hero {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  min-height: 380px;
+  width: 900px;
+  margin: auto;
+  max-width: 80vw;
+  position: relative;
+  z-index: 2;
+    margin-bottom: 120px;
+  &::after {
+    content: "";
+    position: absolute;
+    height: calc(100% + 180px);
+    width: 100vw;
+    background: linear-gradient(var(--moss), var(--moss));
+    z-index: 0;
+    opacity: 0.1;
+    transform: translateY(-110px);
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    height: calc(100% + 180px);
+    background: url(/src/img/z-stroke.svg);
+    z-index: 1;
+    width: 100vw;
+    background-repeat: no-repeat;
+    transform: translateY(-120px);
+    opacity: 0.05;
+    background-size: cover;
+    @media (max-width: $content) {
+      display: none;
+    }
+  }
 
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: grid;
+    gap: 40px;
+    justify-items: center;
+    h1 {
+      font-size: 60px;
+      max-width: 80vw;
+      text-align: center;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @media (max-width: $content) {
+        font-size: 50px;
+      }
+      @media (max-width: $small) {
+        font-size: 40px;
+      }
+      @media (max-width: $x-small) {
+        font-size: 30px;
+      }
+      .type-target {
+        background: -webkit-linear-gradient(60deg, var(--white), var(--white));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        &::after {
+          content: "";
+          display: inline-block;
+          position: relative;
+          bottom: 0;
+          right: 0;
+          width: 5px;
+          margin-left: 15px;
+          height: 60px;
+          transform: translateY(5px);
+          animation: blink 1s infinite;
+          background: var(--white);
+          font-weight: 400;
+          @media (max-width: $content) {
+            height: 50px;
+          }
+          @media (max-width: $small) {
+            height: 40px;
+          }
+          @media (max-width: $x-small) {
+            height: 30px;
+          }
+        }
+        .type-target-2 {
+          font-weight: 800;
+          background: -webkit-linear-gradient(60deg, var(--primary), var(--yellow));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+    }
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  49% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

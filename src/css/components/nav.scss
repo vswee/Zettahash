@@ -1,3 +1,54 @@
+.logo {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 600;
+  transition: 200ms ease;
+  @media (max-width: $small) {
+    margin-right: auto;
+  }
+  svg {
+    height: 30px;
+    opacity: 0;
+    transform: scale(0.8);
+    transform-origin: center;
+    transition: 200ms ease;
+    path {
+      stroke: var(--neutral-1);
+    }
+  }
+  span {
+    font-size: 22px;
+  }
+  &.animated {
+    svg {
+      transform: scale(1);
+      opacity: 1;
+    }
+    #zed,
+    #vertical_1,
+    #vertical_2,
+    #horizontal_1,
+    #horizontal_2 {
+      opacity: 0;
+    }
+    #zed {
+      animation: animateDashLong 1500ms 50ms ease forwards 1;
+    }
+    #vertical_1 {
+      animation: animateDash 1000ms 750ms linear forwards 1;
+    }
+    #vertical_2 {
+      animation: animateDash 1000ms 1000ms linear forwards 1;
+    }
+    #horizontal_1 {
+      animation: animateDashShort 500ms 750ms linear forwards 1;
+    }
+    #horizontal_2 {
+      animation: animateDashShort 500ms 1000ms linear forwards 1;
+    }
+  }
+}
 .nav {
   display: flex;
   flex-direction: row;
@@ -7,6 +58,8 @@
   margin: 15px 0;
   background-color: var(--neutral-10);
   border-radius: $content;
+  z-index: 10;
+  position: relative;
   @media (max-width: $content) {
     border-radius: 0px;
     margin: 0;
@@ -18,59 +71,10 @@
     gap: 20px;
   }
   .logo {
-    display: inline-flex;
-    gap: 10px;
-    align-items: center;
-    font-weight: 600;
-    transition: 200ms ease;
-    @media (max-width: $small) {
-    margin-right: auto;
-    }
     &:hover {
       color: var(--primary);
       path {
         stroke: var(--primary);
-      }
-    }
-    svg {
-      height: 30px;
-      opacity: 0;
-      transform: scale(0.8);
-      transform-origin: center;
-      transition: 200ms ease;
-      path {
-        stroke: var(--neutral-1);
-      }
-    }
-    span {
-      font-size: 22px;
-    }
-    &.animated {
-      svg {
-        transform: scale(1);
-        opacity: 1;
-      }
-      #zed,
-      #vertical_1,
-      #vertical_2,
-      #horizontal_1,
-      #horizontal_2 {
-        opacity: 0;
-      }
-      #zed {
-        animation: animateDashLong 1500ms 50ms ease forwards 1;
-      }
-      #vertical_1 {
-        animation: animateDash 1000ms 750ms linear forwards 1;
-      }
-      #vertical_2 {
-        animation: animateDash 1000ms 1000ms linear forwards 1;
-      }
-      #horizontal_1 {
-        animation: animateDashShort 500ms 750ms linear forwards 1;
-      }
-      #horizontal_2 {
-        animation: animateDashShort 500ms 1000ms linear forwards 1;
       }
     }
   }
@@ -83,7 +87,7 @@
     .link {
       display: inline-flex;
       align-items: center;
-      font-size: calc(22px / 1.62);
+      font-size: calc(22px / #{$r});
       gap: 0.5rem;
       line-height: 1;
       opacity: 0.5;
@@ -183,7 +187,7 @@
     border-radius: 100px;
     opacity: 0.8;
     transition: 200ms ease;
-    font-size: calc(22px / 1.62);
+    font-size: calc(22px / #{$r});
     @media (max-width: $small) {
       flex-direction: column;
       align-items: flex-end;

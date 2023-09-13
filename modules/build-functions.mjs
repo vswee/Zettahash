@@ -77,7 +77,7 @@ const consolidateAssets = function(){
   }
 
 
-  const assetFolders = ['./src/img/', './src/fonts/']
+  const assetFolders = ['./src/video/', './src/img/', './src/fonts/']
   for (const dir of assetFolders) {
     let destDir = dir.replace('./src/', './dist/src/')
     fse.copySync(dir, destDir)
