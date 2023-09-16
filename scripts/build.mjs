@@ -106,4 +106,3 @@ for (const directory of getDirectories('./pages')) {
 makeSiteMaps(siteMap)
 
 
-
