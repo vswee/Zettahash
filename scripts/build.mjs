@@ -15,7 +15,7 @@ function titlify(text) {
   text = text === 'Homepage' ? '' : text + ' | '
   return text
 }
-
+ 
 
 function makePage(directory) {
   let dist = ''
