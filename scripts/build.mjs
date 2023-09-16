@@ -105,4 +105,4 @@ for (const directory of getDirectories('./pages')) {
 
 makeSiteMaps(siteMap)
 
-
+console.log("Generation complete")
