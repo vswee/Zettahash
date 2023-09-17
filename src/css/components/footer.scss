@@ -19,6 +19,9 @@
     display: flex;
     gap: 40px;
     flex-wrap: wrap;
+    .logo{
+      span{font-family: $font-family;}
+    }
     .item {
       &:first-of-type{
         flex-grow: 1;
