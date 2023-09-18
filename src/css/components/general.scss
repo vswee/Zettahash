@@ -204,11 +204,22 @@ a {
         transform: translateX(calc(-50% + (var(--pc) * 0.5))) rotate(calc(-10deg + (var(--deg) * 0.1)));
         transform-origin: 100% 0%;
       }
+      &:nth-of-type(2) {
+        @media (max-width: $medium) {
+          transition: 100ms ease;
+          opacity: var(--dec);
+          transform-origin: 0% 0%;
+          transform: translateX(calc(50% - (var(--pc) * 0.5))) rotate(calc(10deg - (var(--deg) * 0.1)));
+        }
+      }
       &:last-of-type {
         transition: 100ms ease;
         opacity: var(--dec);
         transform: translateX(calc(50% - (var(--pc) * 0.5))) rotate(calc(10deg - (var(--deg) * 0.1)));
         transform-origin: 0% 0%;
+        @media (max-width: $medium) {
+          transform: translateX(calc(-50% + (var(--pc) * 0.5))) rotate(calc(-10deg + (var(--deg) * 0.1)));
+        }
       }
       @media (max-width: $content) {
         width: 300px;
