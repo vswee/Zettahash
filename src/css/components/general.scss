@@ -4,13 +4,13 @@ body {
   color: var(--neutral-1);
   margin: 0;
   padding: 0;
-  cursor: pointer;
 }
 * {
   box-sizing: border-box;
 }
-.main-wrapper{
-    overflow: hidden;}
+.main-wrapper {
+  overflow: hidden;
+}
 .main {
   max-width: $content;
   margin: 0 auto;
@@ -26,6 +26,7 @@ a {
   color: inherit;
   text-transform: none;
   text-decoration: none;
+  cursor: pointer;
 }
 .btn {
   display: inline-flex;
@@ -56,8 +57,23 @@ a {
   }
 }
 
+.link {
+  box-shadow: 0 2px 0 0;
+  transition: 200ms ease;
+  &:hover {
+    color: var(--secondary);
+  }
+}
+
+.store-logo {
+  width: 200px;
+}
+
 .content {
   margin-bottom: 100px;
+  &.breathing-room {
+    margin-bottom: 150px;
+  }
   h2,
   h3,
   p {
@@ -120,7 +136,8 @@ a {
     text-align: center;
     margin: 1rem auto;
   }
-  > small {
+  > small,
+  .head small {
     margin: 1rem auto;
     width: 100%;
     text-align: center;
@@ -136,6 +153,44 @@ a {
     }
     @media (max-width: $x-small) {
       font-size: #{25px / $r};
+    }
+  }
+  .head {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    @media (max-width: $medium) {
+      // backdrop-filter: blur(20px);
+      // padding: 20px;
+    }
+  }
+  blockquote {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 20px 40px;
+    font-family: $sans-serif;
+    .i-alert-triangle {
+      display: block;
+      border-radius: 100px;
+      font-size: 30px;
+      color: var(--yellow);
+    }
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      background: var(--yellow);
+      height: 100%;
+      width: 100%;
+      opacity: 0.1;
+      border-radius: 30px;
+      top: 0;
+      left: 0;
     }
   }
   .fan {
@@ -278,6 +333,135 @@ a {
       }
     }
   }
+  .devices {
+    position: relative;
+    &.slide-by {
+      display: grid;
+      grid-template-columns: 3fr 1fr 3fr;
+      grid-template-rows: 1fr;
+      position: relative;
+      z-index: 0;
+      .iphone0,
+      .iphone1 {
+        object-fit: cover;
+        width: 100%;
+        max-width: 260px;
+        grid-row: 1/2;
+      }
+      .iphone0 {
+        grid-column: 1/3;
+        transition: 100ms ease;
+        // opacity: var(--dec);
+        position: relative;
+        z-index: 0;
+        transform: translateY(calc(-50% + (var(--pc-raw) * 0.5))) rotate(calc(-8deg + (var(--deg-raw) * 0.08)));
+      }
+      .iphone1 {
+        grid-column: 2/4;
+        position: relative;
+        z-index: 2;
+        &.shadow {
+          z-index: 1;
+          transform: translateY(calc(50% - (var(--pc-raw) * 0.5))) translateX(5%)
+            rotate(calc(8deg - (var(--deg-raw) * 0.08)));
+          box-shadow: -100px 0 200px -50px var(--black);
+          border-radius: 80px;
+          aspect-ratio: 1/2;
+        }
+        transform: translateY(calc(50% - (var(--pc-raw) * 0.5))) rotate(calc(8deg - (var(--deg-raw) * 0.08)));
+      }
+    }
+    &.rotate-on-corner {
+      position: relative;
+      @media (min-width: $content) {
+        &::before {
+          content: "";
+          height: 40vw;
+          aspect-ratio: 1/1;
+          display: block;
+          position: absolute;
+          top: -15%;
+          left: -4%;
+          background: radial-gradient(var(--white) 0%, transparent 60%);
+          z-index: 3;
+          opacity: calc(0.6 - (var(--dec-raw) * 0.4));
+          transform: translateX(calc(var(--pc-raw) * 0.4)) translateY(calc(var(--pc-raw) * 0.2));
+        }
+      }
+      .ipad0 {
+        object-fit: cover;
+        width: 100%;
+        transform: rotateY(0deg) rotateX(calc(60deg - (var(--deg-raw) * 0.6)))
+          rotateZ(calc(45deg - (var(--deg-raw) * 0.45)));
+        position: relative;
+        z-index: 2;
+        &.shadow {
+          position: absolute;
+          height: 98%;
+          width: 98%;
+          aspect-ratio: 4/5;
+          background: linear-gradient(60deg, #b7a19d, #242424, #242424, #fff, #605e5b, #8c8c89);
+          z-index: 1;
+          margin: auto;
+          right: 3px;
+          bottom: 4px;
+          border-radius: 7%;
+          transform: rotateY(0deg) rotateX(calc(60deg - (var(--deg-raw) * 0.6)))
+            rotateZ(calc(45deg - (var(--deg-raw) * 0.45))) translateY(calc(5% - (var(--pc-raw) * 0.04)))
+            translateX(calc(2.5% - (var(--pc-raw) * 0.025))) scaleY(calc(1 - (var(--dec-raw) * 0.03)));
+          &::after {
+            content: "";
+            height: 10%;
+            aspect-ratio: 1/1;
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: linear-gradient(calc(40deg + (var(--deg-raw) * 0.5)), #858481 83%, transparent 83%);
+          }
+        }
+      }
+    }
+    &.zoom-into-ui {
+      margin-top: calc(40px * (3 * var(--dec-raw)));
+      margin-bottom: calc(40px * (3 * var(--dec-raw)));
+      transform: scale(calc(0.9 + (var(--dec-raw) * 0.35)));
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 5%;
+        top: 5%;
+        background: black;
+        width: 15%;
+        z-index: 2;
+        left: 0;
+        right: 0;
+        margin: auto;
+        border-radius: 0 0 8px 8px;
+      }
+      .macbook0 {
+        max-width: $content;
+        width: 100vw;
+        position: relative;
+        margin-left: 50%;
+        transform: translateX(-50%);
+      }
+      .macbook0-video {
+        position: absolute;
+        top: 5%;
+        width: 86%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        max-width: calc(#{$content} * 0.78);
+
+        aspect-ratio: 16/10;
+        border: 0;
+        border-radius: 10px;
+      }
+    }
+  }
   .flex {
     display: flex;
     gap: 40px;
@@ -292,8 +476,12 @@ a {
       background-color: var(--neutral-8);
       border-radius: 30px;
       aspect-ratio: 1/1;
-      &.clip{overflow: hidden;}
-      &.stage{background: radial-gradient(var(--neutral-7), var(--neutral-5));}
+      &.clip {
+        overflow: hidden;
+      }
+      &.stage {
+        background: radial-gradient(var(--neutral-7), var(--neutral-5));
+      }
       @media (max-width: $small) {
         grid-row: 1/2;
       }
@@ -306,22 +494,41 @@ a {
         margin-top: 125%;
       }
       #chart-0 {
-        transform: rotate3d(2, 2, 0, calc(66deg - (var(--deg-raw) * 0.6)))scale(1.2)translateX(calc(0% + (var(--pc-raw) * 0.1)));
+        transform: rotate3d(2, 2, 0, calc(66deg - (var(--deg-raw) * 0.6))) scale(1.2)
+          translateX(calc(0% + (var(--pc-raw) * 0.1)));
       }
       #chart-1 {
-        transform: rotate3d(2, 2, 0, calc(-66deg + (var(--deg-raw) * 0.6)))scale(1.2)translateX(calc(0% - (var(--pc-raw) * 0.1)));
+        transform: rotate3d(2, 2, 0, calc(-66deg + (var(--deg-raw) * 0.6))) scale(1.2)
+          translateX(calc(0% - (var(--pc-raw) * 0.1)));
       }
     }
     .text-box {
-      display: grid;
-      justify-items: start;
-      gap: 20px;
-      width: #{($content / 2) - 40px};
-      max-width: 80vw;
-      margin-bottom: auto;
-      p {
-        font-family: $sans-serif;
-      }
+      margin-left: unset;
+      margin-right: unset;
     }
   }
+  .text-box {
+    display: grid;
+    justify-items: start;
+    gap: 20px;
+    width: #{($content / 2) - 40px};
+    max-width: 80vw;
+    margin-bottom: auto;
+    margin: auto;
+
+    @media (max-width: $medium) {
+      margin: auto;
+    }
+    p {
+      font-family: $sans-serif;
+    }
+  }
+}
+.click-to-copy {
+  word-break: break-all;
+}
+.sale-banner {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 80px;
 }

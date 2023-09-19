@@ -32,3 +32,16 @@ enterView({
     }
 
 });
+
+for (const c2c of document.querySelectorAll(".click-to-copy")) {
+    c2c.addEventListener("click", (event) => {
+        let text = event.target.innerHTML
+        let temp = document.createElement('input')
+        temp.classList.add("temp-input")
+       document.body.append(temp)
+        temp.value = text
+        temp.select()
+        document.execCommand("copy")
+        document.querySelector('.temp-input').remove()
+    })
+}
