@@ -57,7 +57,7 @@ a {
   }
 }
 
-.link {
+.url {
   box-shadow: 0 2px 0 0;
   transition: 200ms ease;
   &:hover {
@@ -68,11 +68,26 @@ a {
 .store-logo {
   width: 200px;
 }
-
+.rounded {
+  border-radius: 30px;
+}
 .content {
   margin-bottom: 100px;
   &.breathing-room {
-    margin-bottom: 150px;
+    margin-bottom: 200px;
+    margin-top: 200px;
+    @media (max-width: $content) {
+      margin-bottom: 150px;
+      margin-top: 150px;
+    }
+    @media (max-width: $small) {
+      margin-bottom: 100px;
+      margin-top: 100px;
+    }
+    @media (max-width: $x-small) {
+      margin-bottom: 80px;
+      margin-top: 80px;
+    }
   }
   h2,
   h3,
