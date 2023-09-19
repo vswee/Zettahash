@@ -36,6 +36,8 @@ function makePage(directory) {
 
   let parsedBody = {}
   let testBody = String(body).replace(/ /g, "")
+
+  //IF FILE IS AN ARRAY
   if (testBody.indexOf('[') == 0 && testBody.indexOf(']') == testBody.length - 1) {
     parsedBody.contents = assembleBody(JSON.parse(body))
   } else if (testBody.indexOf('{') == 0 && testBody.indexOf('}') == testBody.length - 1) {

@@ -1,4 +1,4 @@
-<div class="content breathing-room  build-in-scroll">
+<div class="content breathing-room build-in-scroll bg-colour">
   <div class="head">
     <h2>Step 2</h2>
     <small><i class="i-shopping-bag"></i> Purchase Bitcoin</small>
@@ -10,13 +10,114 @@
     </div>
     <div class="text-box">
       <!-- <h3>Add ZH Token to your Wallet</h3> -->
-      <p>If you already have the desired amount of Bitcoin (BTC) in your wallet, then proceed to <a href="#step3" class="url">Step 3</a></p>
+      <p>If you already have the desired amount of Bitcoin (BTC) in your wallet, then proceed to <a href="#step3"
+          class="url">Step 3</a></p>
       <p>Otherwise, ensure you have $1,000 - $1M in Bitcoin (BTC) available in your wallet.</p>
       <blockquote>
-        <i class="i-alert-triangle"></i>Only purchase Bitcoin from sources you trust.<br>Always double-check that the addresses you use for transactions match the desired address.</blockquote>
+        <i class="i-alert-triangle"></i>Only purchase Bitcoin from sources you trust.<br>Always double-check that the
+        addresses you use for transactions match the desired address.
+      </blockquote>
 
       <!-- <a class="btn" href="#readMore">Read more <i class="i-arrow-right"></i></a> -->
     </div>
   </div>
 </div>
+<style lang="scss">
+  @import './src/css/components/_constants.scss';
 
+  .bg-colour {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: calc(100% + 200px);
+      width: 100vw;
+      z-index: -1;
+      margin-left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--primary);
+      opacity: .1;
+      top: 50%;
+
+      @media (max-width: $content) {
+        height: calc(100% + 150px);
+      }
+
+      @media (max-width: $small) {
+        height: calc(100% + 100px);
+      }
+
+      @media (max-width: $x-small) {
+        height: calc(100% + 80px);
+      }
+    }
+  }
+
+  .devices {
+    position: relative;
+
+    &.rotate-on-corner {
+      position: relative;
+
+      @media (min-width: $content) {
+        &::before {
+          content: "";
+          height: 40vw;
+          aspect-ratio: 1/1;
+          display: block;
+          position: absolute;
+          top: -15%;
+          left: -4%;
+          background: radial-gradient(var(--white) 0%, transparent 60%);
+          z-index: 3;
+          opacity: calc(0.6 - (var(--dec-raw) * 0.4));
+          transform: translateX(calc(var(--pc-raw) * 0.4)) translateY(calc(var(--pc-raw) * 0.2));
+        }
+      }
+
+      .ipad0 {
+        object-fit: cover;
+        width: 100%;
+        transform: rotateY(0deg) rotateX(calc(60deg - (var(--deg-raw) * 0.6))) rotateZ(calc(45deg - (var(--deg-raw) * 0.45)));
+        position: relative;
+        z-index: 2;
+
+        &.shadow {
+          position: absolute;
+          width: 97%;
+          aspect-ratio: 4/3;
+          background: linear-gradient(60deg, #b7a19d, #242424, #242424, #fff, #605e5b, #8c8c89);
+          z-index: 1;
+          margin: 0 auto;
+          right: 3px;
+          border-radius: 7%;
+          transform: rotateY(0deg) rotateX(calc(60deg - (var(--deg-raw) * 0.6))) rotateZ(calc(45deg - (var(--deg-raw) * 0.45))) translateY(calc(5% - (var(--pc-raw) * 0.04))) translateX(calc(2.5% - (var(--pc-raw) * 0.025))) scaleY(calc(1 - (var(--dec-raw) * 0.03)));
+          top: 0;
+
+          &::after {
+            content: "";
+            height: 10%;
+            aspect-ratio: 1/1;
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 1px;
+            background: linear-gradient(calc(40deg + (var(--deg-raw) * 0.5)), #858481 81%, transparent 81%);
+          }
+          &::before {
+            content: "";
+            height: 10%;
+            aspect-ratio: 1/1;
+            display: block;
+            position: absolute;
+            bottom: 2px;
+            left: -2px;
+            background: linear-gradient(calc(0deg + (var(--deg-raw) * 0.5)), transparent 21%, #858481 21%);
+          }
+        }
+      }
+    }
+  }
+
+</style>

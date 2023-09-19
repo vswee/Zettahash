@@ -22,7 +22,23 @@ const reCreateFolders = function(folder) {
 const assembleBody = function(contents) {
   let tmp = ''
   for (const section of contents) {
-    tmp += fs.readFileSync('./pages/' + section)
+    //IF SECTION CONTAINS SCSS WHICH NEEDS PROCESSING
+    const sectionHTML = String(fs.readFileSync('./pages/' + section))
+    if ((sectionHTML.indexOf(`<style lang="scss">`) > -1 || sectionHTML.indexOf(`<style lang='scss'>`) > -1) && sectionHTML.indexOf(`</style>`) >-1) {
+      const start = sectionHTML.indexOf(`<style lang="scss">`) > -1 ? `<style lang="scss">` : (sectionHTML.indexOf(`<style lang='scss'>`) > -1 ? `<style lang='scss'>` : false)
+      const end = '</style>'
+      const scss = new RegExp(`${start}([\\s\\S]+?)${end}`, "g").exec(sectionHTML)
+      let result = sass.renderSync({
+        data: scss[1],
+        outputStyle : 'compressed'
+      });
+      const css = `<style>${ result.css.toString() }</style>`
+      let output = sectionHTML.replaceAll(new RegExp(`${start}([\\s\\S]+?)${end}`, "g"), css)
+      tmp += output
+    } else {
+      tmp += fs.readFileSync('./pages/' + section)
+    }
+
   }
   return tmp
 }

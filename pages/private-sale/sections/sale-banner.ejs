@@ -1,10 +1,44 @@
 <div class="sale-banner">
 
-<img class="rounded" src="/src/img/banner.png">
+  <img src="/src/img/banner.png">
 
+  <h1>Zettahash Utility Token</h1>
+  <p><b>2023 PRIVATE SALE</b><br><span>OPEN TO INVESTORS ONLY</span></p>
 </div>
 
 <script>
-    document.body.classList.add('blue')
+  document.body.classList.add('blue')
 
 </script>
+
+<style lang="scss">
+  @import './src/css/components/_constants.scss';
+  .sale-banner {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 80px;
+    @media (max-width: $small) {
+      padding: 20px;
+      background-image: url(/src/img/banner-simple.webp);
+
+      }
+    h1,p{display:none;
+      @media (max-width: $small) {
+        display: block;
+      }
+    }
+    img {
+      border-radius: 30px;
+      max-width: $content;
+      width: 100%;
+      @media (max-width: $content) {
+        border-radius: 0px;
+      }
+      @media (max-width: $small) {
+        display: none;
+      }
+    }
+
+  }
+
+</style>
