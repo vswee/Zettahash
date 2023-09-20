@@ -168,6 +168,12 @@
       display: grid;
       gap: 10px;
 
+      label {
+        font-family: $sans-serif;
+        font-weight: 700;
+        color: var(--neutral-4);
+      }
+
       input {
         border: 0;
         font-size: 22px;
@@ -175,6 +181,12 @@
         border-radius: 10px;
         background: var(--neutral-8);
         width: 100%;
+        font-family: $sans-serif;
+        color: var(--neutral-1);
+
+        &:focus {
+          outline: none;
+        }
       }
 
       .submit {
