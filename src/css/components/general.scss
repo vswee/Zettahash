@@ -73,6 +73,10 @@ a {
   &.breathing-room {
     margin-bottom: 200px;
     margin-top: 200px;
+    max-width: $content;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90vw;
     @media (max-width: $content) {
       margin-bottom: 150px;
       margin-top: 150px;
@@ -156,15 +160,15 @@ a {
     display: block;
     color: var(--secondary);
     font-family: $sans-serif;
-    font-size: #{40px / $r};
+    font-size: #{40px};
     @media (max-width: $content) {
-      font-size: #{35px / $r};
+      font-size: #{35px};
     }
     @media (max-width: $small) {
-      font-size: #{30px / $r};
+      font-size: #{30px};
     }
     @media (max-width: $x-small) {
-      font-size: #{25px / $r};
+      font-size: #{25px};
     }
   }
   .head {
@@ -175,7 +179,6 @@ a {
       @media (max-width: $content) {
         height: calc(150% + 150px);
         margin-top: -150px;
-
       }
       @media (max-width: $small) {
         content: "";
@@ -193,7 +196,19 @@ a {
       @media (max-width: $x-small) {
         height: calc(150% + 80px);
         margin-top: -80px;
-
+      }
+    }
+    h2 {
+      text-align: center;
+      font-size: 55px;
+      @media (max-width: $content) {
+        font-size: 50px;
+      }
+      @media (max-width: $small) {
+        font-size: 45px;
+      }
+      @media (max-width: $x-small) {
+        font-size: 40px;
       }
     }
   }

@@ -27,7 +27,11 @@
 
   .bg-colour {
     position: relative;
-
+    &.fade{
+      &::after{
+        background: linear-gradient(var(--primary), transparent);
+      }
+    }
     &::after {
       content: '';
       position: absolute;

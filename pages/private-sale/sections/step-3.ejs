@@ -6,7 +6,7 @@
 
   </div>
   <!-- <div class="flex"> -->
-  <div class="devices zoom-into-ui">
+  <div class="devices zoom-into-ui laptop">
     <img class="macbook0" src="/src/img/macbook0-dark.webp">
     <!-- <video controls="false" class="macbook0-content" autoplay="true" loop="true">
         <source src="/src/video/purchase-preview.webm" type="video/webm" />
@@ -46,7 +46,7 @@
       margin-bottom: calc(40px * (3 * var(--dec-raw)));
       transform: scale(calc(0.9 + (var(--dec-raw) * 0.35)));
 
-      &::before {
+&.laptop{      &::before {
         content: "";
         display: block;
         position: absolute;
@@ -58,7 +58,7 @@
         left: 0;
         right: 0;
         margin: auto;
-        border-radius: 0 0 12px 12px;
+        border-radius: 0 0 12px 12px;}
       @media (max-width: $small) {
         display:none;
       }
