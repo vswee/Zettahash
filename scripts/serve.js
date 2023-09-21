@@ -1,6 +1,6 @@
 const exec = require('child_process').exec;
 
-const child = exec('node ./scripts/build.mjs; http-server ./dist -p 8082;',
+const child = exec('npm install; node ./scripts/build.mjs; http-server ./dist -p 8082;',
     (error, stdout, stderr) => {
         console.log(`stdout: ${stdout}`);
         console.log(`stderr: ${stderr}`);
