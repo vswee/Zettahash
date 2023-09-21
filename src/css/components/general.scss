@@ -39,9 +39,16 @@ a {
   line-height: 1;
   gap: 10px;
   border-radius: 100px;
-  &:hover {
+  &:not(.disabled){
+    &:hover {
     background: var(--secondary);
     color: var(--neutral-10);
+  }
+}
+  &.disabled{
+    cursor:not-allowed;
+  background: var(--neutral-5);
+
   }
 }
 
@@ -385,6 +392,9 @@ a {
     display: flex;
     gap: 40px;
     margin-top: 50px;
+    &.start{
+      .text-box{margin-top: 0;}
+    }
     @media (max-width: $small) {
       display: grid;
       justify-content: center;
