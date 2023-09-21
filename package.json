@@ -5,7 +5,7 @@
   "main": "build.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node ./scripts/serve.js;",
+    "serve": "node ./scripts/serve.js",
     "build": "node ./scripts/build.mjs"
   },
   "author": "",
