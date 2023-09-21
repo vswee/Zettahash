@@ -5,13 +5,8 @@
     <a class="btn-link" href="#">Private Sale Terminal <i class="i-external-link"></i></a>
 
   </div>
-  <!-- <div class="flex"> -->
   <div class="devices zoom-into-ui laptop">
     <img class="macbook0" src="/src/img/macbook0-dark.webp">
-    <!-- <video controls="false" class="macbook0-content" autoplay="true" loop="true">
-        <source src="/src/video/purchase-preview.webm" type="video/webm" />
-        <source src="/src/video/purchase-preview.mp4" type="video/mp4" />
-      </video> -->
     <div class="browser-window">
       <div class="window-frame">
         <div class="window-ui"></div>
@@ -22,16 +17,13 @@
 
   </div>
   <div class="text-box">
-    <!-- <h3>Add ZH Token to your Wallet</h3> -->
     <p>You can use the terminal above or open the <a href="#" class="url">Private Sale Terminal <i
-          class="i-external-link"></i></a> in a new browser tab.</p>
+          class="i-external-link"></i></a> in a new tab.</p>
     <br>
     <blockquote>
       <i class="i-alert-triangle"></i>Make note of your transaction hash.<br>Think of it as your blockchain transaction
       receipt.
     </blockquote>
-
-    <!-- <a class="btn" href="#readMore">Read more <i class="i-arrow-right"></i></a> -->
   </div>
 </div>
 </div>
@@ -46,22 +38,25 @@
       margin-bottom: calc(40px * (3 * var(--dec-raw)));
       transform: scale(calc(0.9 + (var(--dec-raw) * 0.35)));
 
-&.laptop{      &::before {
-        content: "";
-        display: block;
-        position: absolute;
-        height: 4%;
-        top: 4%;
-        background: black;
-        width: 15%;
-        z-index: 2;
-        left: 0;
-        right: 0;
-        margin: auto;
-        border-radius: 0 0 12px 12px;}
-      @media (max-width: $small) {
-        display:none;
-      }
+      &.laptop {
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          height: 4%;
+          top: 4%;
+          background: black;
+          width: 15%;
+          z-index: 2;
+          left: 0;
+          right: 0;
+          margin: auto;
+          border-radius: 0 0 12px 12px;
+        }
+
+        @media (max-width: $small) {
+          display: none;
+        }
       }
 
       .macbook0 {
@@ -70,8 +65,9 @@
         position: relative;
         margin-left: 50%;
         transform: translateX(-50%);
+
         @media (max-width: $small) {
-          display:none;
+          display: none;
         }
       }
 
@@ -88,11 +84,13 @@
         border-radius: 10px;
         background: var(--neutral-10);
         grid-template-rows: auto 1fr;
+
         @media (max-width: $small) {
           position: relative;
           aspect-ratio: unset;
           height: 90vh;
-      }
+        }
+
         .window-frame {
           height: 25px;
           background: var(--neutral-8);

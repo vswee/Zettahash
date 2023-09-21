@@ -37,7 +37,7 @@
       <div class="input-group">
         <label>Mobile</label>
         <div class="combined-input">
-          <div class="dropdown">
+          <div class="dropdown dial-code">
             <div class="option"><span class="pre">🇦🇫 Afghanistan</span><span class="data">93</span></div>
             <div class="option"><span class="pre">🇦🇽 Åland Islands</span><span class="data">358</span></div>
             <div class="option"><span class="pre">🇦🇱 Albania</span><span class="data">355</span></div>
@@ -313,6 +313,26 @@
 </div>
 
 <script>
+  const formObject = {
+    "first-name": { value: false, required: true },
+    "last-name": { value: false, required: true },
+    "dial-code": { value: false, required: true },
+    "mobile": { value: false, required: true },
+    "address": { value: false, required: true },
+    "attachments": { value: false, required: true }
+  }
+
+  for (const key of Object.keys(formObject)) {
+    let element = document.querySelector(`.${key}`)
+    if (element.nodeName === 'INPUT') {
+      element.value = formObject[key].value === false ? '' : formObject[key].value
+      element.addEventListener("input", (event) => {
+        let self = event.target
+        formObject[self.getAttribute('class')].value = self.value
+      })
+    }
+  }
+
   const attachments = document.querySelector(".attachments-input")
   document.querySelector('.attachments-parent').addEventListener("dragover", (e) => {
     e.preventDefault()
@@ -351,7 +371,10 @@
     for (var i = 0; i < files.length; i++) {
       var file = files[i];
       var imageType = /image.*/;
-      if (!file.type.match(imageType)) { continue; }
+      if (!file.type.match(imageType)) { 
+    gallery.classList.add("only-images-supported")
+        
+        continue; }
       var img = document.createElement("img");
       img.classList.add("obj");
       img.file = file;
@@ -373,15 +396,16 @@
     handleFiles(attachments.files)
   })
 
-  let currentImages = []
   function displayFile(img) {
     let id = `${Date.now()}-${img.src.substring(img.src.length - 5).replace(/[^0-9a-z]/gi, '')}`
-    currentImages.push({ id: id, src: img.src })
+    formObject.attachments.value = formObject.attachments.value ? formObject.attachments.value : []
+    formObject.attachments.value.push({ id: id, src: img.src })
     img.addEventListener("click", twoStageDelete)
     img.setAttribute("data-id", id)
     img.setAttribute("data-clicks", 0)
     gallery.appendChild(img)
-
+    gallery.classList.add("populated")
+    gallery.classList.remove("only-images-supported")
   }
   function twoStageDelete(e) {
     const target = e.target
@@ -397,15 +421,23 @@
     }
     if (clicks == 1) {
       const id = target.getAttribute("data-id")
-      currentImages = currentImages.filter(function (obj) {
+      formObject.attachments.value = formObject.attachments.value.filter(function (obj) {
         return obj.id !== id;
       });
       target.remove()
+      if (!formObject.attachments.value || formObject.attachments.value.length == 0) {
+        gallery.classList.remove("populated")
+      }
       return
     }
   }
+
+
   document.querySelectorAll(".dropdown").forEach((dropdown) => {
-    dropdown.addEventListener("click", toggleDropdown, false)
+    dropdown.addEventListener("click", (event) => {
+      event.stopPropagation()
+      toggleDropdown(event)
+    }, false)
     dropdown.querySelectorAll(".option").forEach((option) => {
       const pre = option.querySelector(".pre")
       const flag = pre.innerHTML.split(" ")[0]
@@ -414,13 +446,18 @@
       span.classList.add("flag-name-parent")
       span.innerHTML = `<span class="flag">${flag}</span><span class="country-name">${name}</span>`
       pre.replaceWith(span)
+      option.addEventListener("click", (event) => {
+        event.stopPropagation()
 
-
-      option.addEventListener("click", (event) => { selectOption(event) }, false)
+        selectOption(event)
+      }, false)
     })
   })
   function selectOption(event) {
+    event.preventDefault()
+    event.stopPropagation()
     const opt = event.target
+    formObject['dial-code'].value = opt.querySelector(".data").innerHTML
     const dropdown = opt.parentNode
     dropdown.querySelectorAll(".option").forEach((opt) => {
       opt.classList.remove('selected')
@@ -436,6 +473,11 @@
     }
     e.classList.add('open')
   }
+  document.body.addEventListener("click", () => {
+    document.querySelectorAll(".dropdown").forEach((dropdown) => {
+      dropdown.classList.remove("open")
+    })
+  })
 </script>
 
 <style lang="scss">
@@ -465,11 +507,12 @@
         font-family: $sans-serif;
         font-weight: 700;
         color: var(--neutral-4);
+        font-size: 16px;
       }
 
       input {
         border: 0;
-        font-size: 22px;
+        font-size: 16px;
         padding: 10px 15px;
         border-radius: 10px;
         background: var(--neutral-8);
@@ -491,36 +534,42 @@
 
   .combined-input {
     display: grid;
-  gap: 0;
-  background: var(--neutral-8);
-  border-radius: 10px;
-  grid-template-columns: 1fr auto;
-  .dropdown{
-    box-shadow: 1px 0 0 0 var(--neutral-10);
-  z-index: 2;
-  padding-right: 10px;
-  }
-  input{
-    padding-left: 0;
-  }
+    gap: 0;
+    background: var(--neutral-8);
+    border-radius: 10px;
+    grid-template-columns: 1fr auto;
+
+    .dropdown {
+      z-index: 2;
+
+      &:not(.open) {
+        box-shadow: 1px 0 0 0 var(--neutral-10);
+        padding-right: 10px;
+      }
+    }
+
+    input {
+      padding-left: 0;
+    }
   }
 
   .dropdown {
-    font-size: 20px;
+    font-size: inherit;
     display: grid;
-    gap: 10px;
     grid-template-columns: 1fr;
     max-height: 200px;
-    max-width:300px;
+    max-width: 300px;
     overflow-x: hidden;
     overflow-y: auto;
     cursor: pointer;
     font-family: $sans-serif;
     width: max-content;
+
     &:not(.open) {
       .option {
         &.selected {
           pointer-events: none;
+          padding: 0 5px 0 20px;
 
           .country-name {
             display: none;
@@ -547,37 +596,45 @@
       display: flex;
       gap: 5px;
       align-items: center;
-      padding: 0 5px 0 20px;
+      padding: 10px 20px;
       opacity: .8;
-      &:hover{
-      opacity: 1;
+
+      &:hover {
+        opacity: 1;
+        background: var(--neutral-7);
       }
+
       &.selected {
         grid-row: 1/2;
-      opacity: 1;
+        opacity: 1;
       }
-      .flag-name-parent{
+
+      .flag-name-parent {
         display: flex;
         align-items: center;
       }
-      .flag{
-        font-size: 24px;
-      }
-.country-name{
-  margin-left: 5px;
 
-}
+      .flag {
+        font-size: calc(16px * 1.62);
+      }
+
+      .country-name {
+        margin-left: 5px;
+
+      }
+
       .data {
         display: flex;
         margin-left: 5px;
-        font-size: 22px;
+        font-size: 16px;
 
         &::before {
           content: ' +';
           display: block;
         }
       }
-      span{
+
+      span {
         pointer-events: none;
       }
     }
@@ -630,6 +687,28 @@
     gap: 20px;
     margin-top: 20px;
 
+    &.populated {
+      &::before {
+        font-family: $sans-serif;
+        font-size: 14px;
+        opacity: .5;
+        content: 'Double-tap image preview to delete.';
+        display: block;
+        width: 100%;
+        /* color:var(--primary); */
+      }
+    }
+    &.only-images-supported {
+      &::after {
+        font-family: $sans-serif;
+        font-size: 14px;
+        content: 'Please only upload image files here.';
+        display: block;
+        width: 100%;
+        color:var(--red);
+      }
+    }
+
     img {
       max-width: 150px;
       max-height: 250px;
@@ -637,7 +716,7 @@
       padding: 10px;
       background-color: var(--neutral-8);
       border-radius: 10px;
-
+      cursor: pointer;
       &.marked-for-deletion {
         background-color: var(--red);
       }

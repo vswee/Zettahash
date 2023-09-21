@@ -9,7 +9,6 @@
       <div class="ipad0 shadow"></div>
     </div>
     <div class="text-box">
-      <!-- <h3>Add ZH Token to your Wallet</h3> -->
       <p>If you already have the desired amount of Bitcoin (BTC) in your wallet, then proceed to <a href="#step3"
           class="url">Step 3</a></p>
       <p>Otherwise, ensure you have $1,000 - $1M in Bitcoin (BTC) available in your wallet.</p>
@@ -17,8 +16,6 @@
         <i class="i-alert-triangle"></i>Only purchase Bitcoin from sources you trust.<br>Always double-check that the
         addresses you use for transactions match the desired address.
       </blockquote>
-
-      <!-- <a class="btn" href="#readMore">Read more <i class="i-arrow-right"></i></a> -->
     </div>
   </div>
 </div>
@@ -27,11 +24,13 @@
 
   .bg-colour {
     position: relative;
-    &.fade{
-      &::after{
+
+    &.fade {
+      &::after {
         background: linear-gradient(var(--primary), transparent);
       }
     }
+
     &::after {
       content: '';
       position: absolute;
@@ -109,6 +108,7 @@
             right: 1px;
             background: linear-gradient(calc(40deg + (var(--deg-raw) * 0.5)), #858481 81%, transparent 81%);
           }
+
           &::before {
             content: "";
             height: 10%;
