@@ -5,9 +5,50 @@
     <a class="btn-link" href="#">Private Sale Terminal <i class="i-external-link"></i></a>
 
   </div>
-  <div class="devices zoom-into-ui laptop">
-    <img class="macbook0" src="/src/img/macbook0-dark.webp">
-    <div class="browser-window">
+  <div class="flex start devices">
+    <!-- <img class="macbook0" src="/src/img/macbook0-dark.webp"> -->
+    <div class="text-box">
+      <p>Purchase $1,000 to $1,000,000 (USD) of ZH using Bitcoin (BTC)
+      </p>
+      <br>
+      <table class="table table-sm-custom">
+        <tbody>
+          <tr>
+            <td>Investor Level</td>
+            <td>Investment Range</td>
+            <td>Price per ZH</td>
+          </tr>
+          <tr>
+            <td>Terahash</td>
+            <td>$1,000 - $10,000</td>
+            <td>$0.30</td>
+          </tr>
+          <tr>
+            <td>Petahash</td>
+            <td>$10,000 - $100,000</td>
+            <td>$0.20</td>
+          </tr>
+          <tr>
+            <td>Exahash</td>
+            <td>$100,000 - $1,000,000</td>
+            <td>$0.10</td>
+          </tr>
+          <tr>
+            <td>Zettahash</td>
+            <td>$1,000,000<br></td>
+            <td>Max Cap 10,000,000 ZH</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <blockquote>
+        <i class="i-alert-triangle"></i>Make note of your transaction hash.<br>Think of it as your blockchain
+        transaction
+        receipt.
+      </blockquote>
+    </div>
+
+    <div class="browser-window zoom-into-ui">
       <div class="window-frame">
         <div class="window-ui"></div>
       </div>
@@ -16,27 +57,100 @@
     </div>
 
   </div>
-  <div class="text-box">
-    <p>You can use the terminal above or open the <a href="#" class="url">Private Sale Terminal <i
-          class="i-external-link"></i></a> in a new tab.</p>
-    <br>
-    <blockquote>
-      <i class="i-alert-triangle"></i>Make note of your transaction hash.<br>Think of it as your blockchain transaction
-      receipt.
-    </blockquote>
-  </div>
 </div>
 </div>
 <style lang="scss">
   @import './src/css/components/_constants.scss';
 
+  .form.faux-ui {
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 0 0 0;
+    width: 100%;
+
+    .card-img-top {
+      width: 80px;
+    }
+
+    .input-group {
+      &:last-of-type {
+        margin-bottom: auto;
+      }
+    }
+
+    .inline-input {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--neutral-8);
+      padding-left: 20px;
+      border-radius: 20px;
+      font-family: $sans-serif;
+    }
+  }
+
+  .table-sm-custom {
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px var(--neutral-6);
+    margin: auto;
+
+    tr {
+      td {
+        font-family: $sans-serif;
+        padding: 10px;
+
+        &:last-of-type {
+          padding-right: 15px;
+        }
+
+        &:first-of-type {
+          font-family: $font-family;
+          background-color: var(--neutral-7);
+          padding-left: 15px;
+          color: var(--neutral-4);
+          font-weight: 600;
+        }
+      }
+
+      &:first-of-type {
+        td {
+          font-family: $sans-serif;
+          font-weight: 800;
+          padding: 15px 10px 15px 10px;
+          background-color: var(--neutral-8);
+          color: var(--neutral-4);
+
+          &:first-of-type {
+            padding-left: 15px;
+          }
+
+          &:last-of-type {
+            padding-right: 15px;
+          }
+        }
+      }
+
+      &:last-of-type {
+        td {
+          padding-bottom: 15px;
+        }
+      }
+    }
+  }
+
   .devices {
     position: relative;
 
-    &.zoom-into-ui {
+    &.dynamic-margin,
+    .dynamic-margin {
+
       margin-top: calc(60px * (3 * var(--dec-raw)));
       margin-bottom: calc(40px * (3 * var(--dec-raw)));
-      transform: scale(calc(0.9 + (var(--dec-raw) * 0.35)));
+    }
+
+    .zoom-into-ui {
+      transform: scale(calc(0.8 + (var(--dec-raw) * 0.2)));
 
       &.laptop {
         &::before {
@@ -71,71 +185,68 @@
         }
       }
 
-      .browser-window {
-        position: absolute;
-        top: 4%;
-        width: 86%;
-        left: 0;
-        right: 0;
-        margin: auto;
-        max-width: calc(#{$content} * 0.78);
-        display: grid;
-        aspect-ratio: 17/11;
-        border-radius: 10px;
-        background: var(--neutral-10);
-        grid-template-rows: auto 1fr;
 
-        @media (max-width: $small) {
-          position: relative;
-          aspect-ratio: unset;
-          height: 90vh;
-        }
+    }
+  }
 
-        .window-frame {
-          height: 25px;
-          background: var(--neutral-8);
-          display: grid;
-          align-content: center;
-          border-radius: 10px 10px 0 0;
+  .browser-window {
+    position: relative;
+    width: 450px;
+    margin: auto;
+    max-width: 90vw;
+    display: grid;
+    aspect-ratio: 9/16;
+    border-radius: 10px;
+    background: var(--neutral-7);
+    box-shadow: 0 0 80px -40px var(--yellow);
+    contain: content;
+    grid-template-rows: auto 1fr;
 
-          .window-ui {
-            height: 10px;
-            aspect-ratio: 1/1;
-            border-radius: 100px;
-            background: var(--red);
-            margin-left: 10px;
-            position: relative;
+    @media (max-width: $small) {}
 
-            &::before,
-            &::after {
-              content: '';
-              height: 100%;
-              width: 100%;
-              display: block;
-              border-radius: 100px;
-              position: absolute;
-            }
+    .window-frame {
+      height: 25px;
+      background: var(--neutral-8);
+      display: grid;
+      align-content: center;
+      border-radius: 10px 10px 0 0;
 
-            &::before {
-              background: var(--amber);
-              transform: translateX(170%);
-            }
+      .window-ui {
+        height: 10px;
+        aspect-ratio: 1/1;
+        border-radius: 100px;
+        background: var(--red);
+        margin-left: 10px;
+        position: relative;
 
-            &::after {
-              background: var(--lime);
-              transform: translateX(340%);
-            }
-          }
-
-        }
-
-        .macbook0-content {
-          border: 0;
-          border-radius: 0 0 10px 10px;
+        &::before,
+        &::after {
+          content: '';
           height: 100%;
           width: 100%;
+          display: block;
+          border-radius: 100px;
+          position: absolute;
+        }
+
+        &::before {
+          background: var(--amber);
+          transform: translateX(170%);
+        }
+
+        &::after {
+          background: var(--lime);
+          transform: translateX(340%);
         }
       }
+
+    }
+
+    .macbook0-content {
+      border: 0;
+      border-radius: 0 0 10px 10px;
+      height: 100%;
+      width: 100%;
     }
   }
 

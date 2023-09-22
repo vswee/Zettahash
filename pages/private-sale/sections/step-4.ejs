@@ -285,7 +285,7 @@
             <div class="option"><span class="pre">🇿🇲 Zambia</span><span class="data">260</span></div>
             <div class="option"><span class="pre">🇿🇼 Zimbabwe</span><span class="data">263</span></div>
           </div>
-          <input type="text" class="mobile" />
+          <input type="text" class="mobile-number" />
         </div>
       </div>
       <div class="input-group wide">
@@ -317,7 +317,8 @@
     "first-name": { value: false, required: true },
     "last-name": { value: false, required: true },
     "dial-code": { value: false, required: true },
-    "mobile": { value: false, required: true },
+    "email": { value: false, required: true },
+    "mobile-number": { value: false, required: true },
     "address": { value: false, required: true },
     "attachments": { value: false, required: true }
   }
@@ -329,7 +330,33 @@
       element.addEventListener("input", (event) => {
         let self = event.target
         formObject[self.getAttribute('class')].value = self.value
+        observeArray()
       })
+    }
+  }
+
+  function observeArray() {
+    console.log("called")
+    let block = true
+    for (const key of Object.keys(formObject)) {
+      let self = String(formObject[key].value)
+      if (formObject[key].value !== false && formObject[key].value.length > 0) {
+        document.querySelector(`.${key}`).parentNode.classList.remove("empty")
+        block = false
+        console.log(key, "no block")
+
+      }
+
+      else {
+        block = true
+        document.querySelector(".btn.submit").classList.add('disabled')
+        console.log(key, "blocked")
+        break
+      }
+    }
+    if (block === false) {
+      console.log('were free')
+      document.querySelector(".btn.submit").classList.remove('disabled')
     }
   }
 
@@ -371,10 +398,11 @@
     for (var i = 0; i < files.length; i++) {
       var file = files[i];
       var imageType = /image.*/;
-      if (!file.type.match(imageType)) { 
-    gallery.classList.add("only-images-supported")
-        
-        continue; }
+      if (!file.type.match(imageType)) {
+        gallery.classList.add("only-images-supported")
+
+        continue;
+      }
       var img = document.createElement("img");
       img.classList.add("obj");
       img.file = file;
@@ -400,6 +428,7 @@
     let id = `${Date.now()}-${img.src.substring(img.src.length - 5).replace(/[^0-9a-z]/gi, '')}`
     formObject.attachments.value = formObject.attachments.value ? formObject.attachments.value : []
     formObject.attachments.value.push({ id: id, src: img.src })
+    observeArray()
     img.addEventListener("click", twoStageDelete)
     img.setAttribute("data-id", id)
     img.setAttribute("data-clicks", 0)
@@ -428,6 +457,7 @@
       if (!formObject.attachments.value || formObject.attachments.value.length == 0) {
         gallery.classList.remove("populated")
       }
+      observeArray()
       return
     }
   }
@@ -462,6 +492,8 @@
     dropdown.querySelectorAll(".option").forEach((opt) => {
       opt.classList.remove('selected')
     })
+    observeArray()
+
     opt.classList.add('selected')
     dropdown.classList.remove('open')
   }
@@ -513,7 +545,7 @@
       input {
         border: 0;
         font-size: 16px;
-        padding: 10px 15px;
+        padding: 15px 20px;
         border-radius: 10px;
         background: var(--neutral-8);
         width: 100%;
@@ -698,6 +730,7 @@
         /* color:var(--primary); */
       }
     }
+
     &.only-images-supported {
       &::after {
         font-family: $sans-serif;
@@ -705,7 +738,7 @@
         content: 'Please only upload image files here.';
         display: block;
         width: 100%;
-        color:var(--red);
+        color: var(--red);
       }
     }
 
@@ -717,6 +750,7 @@
       background-color: var(--neutral-8);
       border-radius: 10px;
       cursor: pointer;
+
       &.marked-for-deletion {
         background-color: var(--red);
       }
