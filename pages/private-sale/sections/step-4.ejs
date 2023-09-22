@@ -336,26 +336,20 @@
   }
 
   function observeArray() {
-    console.log("called")
     let block = true
     for (const key of Object.keys(formObject)) {
       let self = String(formObject[key].value)
       if (formObject[key].value !== false && formObject[key].value.length > 0) {
         document.querySelector(`.${key}`).parentNode.classList.remove("empty")
         block = false
-        console.log(key, "no block")
-
       }
-
       else {
         block = true
         document.querySelector(".btn.submit").classList.add('disabled')
-        console.log(key, "blocked")
         break
       }
     }
     if (block === false) {
-      console.log('were free')
       document.querySelector(".btn.submit").classList.remove('disabled')
     }
   }
