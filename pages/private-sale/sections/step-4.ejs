@@ -340,17 +340,32 @@
     for (const key of Object.keys(formObject)) {
       let self = String(formObject[key].value)
       if (formObject[key].value !== false && formObject[key].value.length > 0) {
-        document.querySelector(`.${key}`).parentNode.classList.remove("empty")
         block = false
+        if (key === "email") {
+          if (self.indexOf("@") < 0) { block = true }
+          if (self.indexOf(".") < 0) { block = true }
+        }
+        if (key === "mobile-number") {
+          if (isNaN(self)) { block = true }
+        }
+        if (key === "address") {
+          if (self.length < 42) { block = true }
+          if (self.indexOf("0x") !== 0) { block = true }
+        }
+        if (block === false) {
+          document.querySelector(`.${key}`).parentNode.classList.remove("empty")
+        }
       }
       else {
         block = true
-        document.querySelector(".btn.submit").classList.add('disabled')
+        document.querySelector(`.${key}`).parentNode.classList.add("empty")
         break
       }
     }
     if (block === false) {
       document.querySelector(".btn.submit").classList.remove('disabled')
+    } else {
+      document.querySelector(".btn.submit").classList.add('disabled')
     }
   }
 
