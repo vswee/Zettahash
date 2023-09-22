@@ -72,7 +72,8 @@ a {
 }
 
 .store-logo {
-  width: 200px;
+  max-width: calc(45vw - 30px);
+  height: 55px;
 }
 .content {
   margin-bottom: 100px;
