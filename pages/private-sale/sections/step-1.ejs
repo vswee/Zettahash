@@ -62,7 +62,8 @@
         transform: translateY(calc(-50% + (var(--pc-raw) * 0.5))) rotate(calc(-8deg + (var(--deg-raw) * 0.08)));
 
         @media (max-width: $small) {
-          transform: translateY(calc(-50% + (var(--pc) * 0.5))) rotate(calc(-8deg + (var(--deg) * 0.08)));
+        transform: translateX(calc(-50% + (var(--pc) * 0.5))) rotate(calc(-8deg + (var(--deg) * 0.08)));
+          /* transform: translateY(calc(-50% + (var(--pc) * 0.5))) rotate(calc(-8deg + (var(--deg) * 0.08))); */
         }
       }
 
@@ -70,6 +71,10 @@
         grid-column: 2/4;
         position: relative;
         z-index: 2;
+        transform: translateY(calc(50% - (var(--pc-raw) * 0.5))) rotate(calc(8deg - (var(--deg-raw) * 0.08)));
+        @media (max-width: $small) {
+          transform: translateX(calc(50% - (var(--pc) * 0.5))) rotate(calc(8deg - (var(--deg) * 0.08)));
+        }
 
         &.shadow {
           z-index: 1;
@@ -79,15 +84,12 @@
           aspect-ratio: 1/2;
 
           @media (max-width: $small) {
-            transform: translateY(calc(50% - (var(--pc) * 0.5))) translateX(5%) rotate(calc(8deg - (var(--deg) * 0.08)));
+          transform: translateX(calc(50% - (var(--pc) * 0.5))) translateX(5%) rotate(calc(8deg - (var(--deg) * 0.08)));
+          box-shadow: -20px 0 100px -20px var(--black);
+            /* transform: translateY(calc(50% - (var(--pc) * 0.5))) translateX(5%) rotate(calc(8deg - (var(--deg) * 0.08))); */
           }
         }
 
-        transform: translateY(calc(50% - (var(--pc-raw) * 0.5))) rotate(calc(8deg - (var(--deg-raw) * 0.08)));
-
-        @media (max-width: $small) {
-          transform: translateY(calc(50% - (var(--pc) * 0.5))) rotate(calc(8deg - (var(--deg) * 0.08)));
-        }
       }
     }
   }

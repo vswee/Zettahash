@@ -39,16 +39,15 @@ a {
   line-height: 1;
   gap: 10px;
   border-radius: 100px;
-  &:not(.disabled){
+  &:not(.disabled) {
     &:hover {
-    background: var(--secondary);
-    color: var(--neutral-10);
+      background: var(--secondary);
+      color: var(--neutral-10);
+    }
   }
-}
-  &.disabled{
-    cursor:not-allowed;
-  background: var(--neutral-5);
-
+  &.disabled {
+    cursor: not-allowed;
+    background: var(--neutral-5);
   }
 }
 
@@ -183,29 +182,29 @@ a {
     position: relative;
     z-index: 2;
     text-align: center;
-    &::before {
-      @media (max-width: $content) {
-        height: calc(120% + 150px);
-        margin-top: -150px;
-      }
-      @media (max-width: $small) {
-        content: "";
-        height: calc(120% + 100px);
-        width: 100vw;
-        margin-top: -100px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: block;
-        position: absolute;
-        background: transparent;
-        z-index: -1;
-        backdrop-filter: blur(20px);
-      }
-      @media (max-width: $x-small) {
-        height: calc(120% + 80px);
-        margin-top: -80px;
-      }
-    }
+    // &::before {
+    //   @media (max-width: $content) {
+    //     height: calc(120% + 150px);
+    //     margin-top: -150px;
+    //   }
+    //   @media (max-width: $small) {
+    //     content: "";
+    //     height: calc(120% + 100px);
+    //     width: 100vw;
+    //     margin-top: -100px;
+    //     left: 50%;
+    //     transform: translateX(-50%);
+    //     display: block;
+    //     position: absolute;
+    //     background: transparent;
+    //     z-index: -1;
+    //     backdrop-filter: blur(20px);
+    //   }
+    //   @media (max-width: $x-small) {
+    //     height: calc(120% + 80px);
+    //     margin-top: -80px;
+    //   }
+    // }
     h2 {
       text-align: center;
       font-size: 55px;
@@ -230,6 +229,10 @@ a {
     margin: 0;
     padding: 20px 40px;
     font-family: $sans-serif;
+    @media (max-width: $small) {
+      flex-direction: column;
+      text-align: center;
+    }
     .i-alert-triangle {
       display: block;
       border-radius: 100px;
@@ -393,8 +396,10 @@ a {
     display: flex;
     gap: 40px;
     margin-top: 60px;
-    &.start{
-      .text-box{margin-top: 0;}
+    &.start {
+      .text-box {
+        margin-top: 0;
+      }
     }
     @media (max-width: $small) {
       display: grid;

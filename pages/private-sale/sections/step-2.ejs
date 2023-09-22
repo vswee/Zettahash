@@ -86,6 +86,11 @@
         position: relative;
         z-index: 2;
 
+        @media (max-width:$small) {
+        transform: rotateY(0deg) rotateX(calc(30deg - (var(--deg) * 0.3))) rotateZ(calc(45deg - (var(--deg) * 0.45)));
+          
+        }
+
         &.shadow {
           position: absolute;
           width: 97%;
@@ -97,7 +102,9 @@
           border-radius: 7%;
           transform: rotateY(0deg) rotateX(calc(60deg - (var(--deg-raw) * 0.6))) rotateZ(calc(45deg - (var(--deg-raw) * 0.45))) translateY(calc(5% - (var(--pc-raw) * 0.04))) translateX(calc(2.5% - (var(--pc-raw) * 0.025))) scaleY(calc(1 - (var(--dec-raw) * 0.03)));
           top: 0;
-
+          @media (max-width:$small) {
+          transform: rotateY(0deg) rotateX(calc(30deg - (var(--deg) * 0.3))) rotateZ(calc(45deg - (var(--deg) * 0.45))) translateY(calc(5% - (var(--pc) * 0.04))) translateX(calc(2.5% - (var(--pc) * 0.025))) scaleY(calc(1 - (var(--dec) * 0.03)));
+          }
           &::after {
             content: "";
             height: 10%;

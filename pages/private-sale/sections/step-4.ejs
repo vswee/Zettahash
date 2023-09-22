@@ -30,11 +30,11 @@
         <input type="text" class="last-name" />
       </div>
 
-      <div class="input-group">
+      <div class="input-group wide-on-mobile">
         <label>Email</label>
         <input type="text" class="email" />
       </div>
-      <div class="input-group">
+      <div class="input-group wide-on-mobile">
         <label>Mobile</label>
         <div class="combined-input">
           <div class="dropdown dial-code">
@@ -297,7 +297,7 @@
         <div class="attachments-parent">
           <div class="attachments">
             <input type="file" class="attachments-input" />
-            <p>Drag and drop screenshots and image files here.</p>
+            <p></p>
           </div>
         </div>
         <div class="uploaded-gallery"></div>
@@ -541,6 +541,13 @@
         grid-column: 1/3;
       }
 
+      &.wide-on-mobile {
+        @media (max-width:$small) {
+          grid-column: 1/3;
+
+        }
+      }
+
       display: grid;
       gap: 10px;
 
@@ -685,15 +692,31 @@
     position: relative;
     cursor: pointer;
 
-    &:hover {
-      .attachments {
-        box-shadow: 0 0 0 1px var(--primary), 0 0 15px 0px var(--primary);
+    .attachments {
+      p {
+        &::before {
+          content: "Drag and drop screenshots and image files here.";
+          display: block;
+          animation: popIn 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-        p {
-          &::after {
-            content: "Or tap to browse files to upload.";
-            display: block;
-            animation: popIn 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+          @media (max-width:$small) {
+            content: "Tap to upload screenshots / images from your device.";
+          }
+        }
+      }
+    }
+
+    @media (min-width:$small) {
+      &:hover {
+        .attachments {
+          box-shadow: 0 0 0 1px var(--primary), 0 0 15px 0px var(--primary);
+
+          p {
+            &::after {
+              content: "Or tap to browse files to upload.";
+              display: block;
+              animation: popIn 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            }
           }
         }
       }
