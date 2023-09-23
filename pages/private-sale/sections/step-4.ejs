@@ -4,12 +4,10 @@
     <small><i class="i-user-check"></i> Send Proof of Transaction</small>
 
   </div>
-  <!-- <div class="flex"> -->
 
   <div class="flex start">
 
     <div class="text-box">
-      <!-- <h3>Add ZH Token to your Wallet</h3> -->
       <p>Send us screenshots of your transaction along with your <b>ZH Wallet Address</b>.</p>
       <br>
       <blockquote>
@@ -18,16 +16,11 @@
         information.
       </blockquote>
 
-      <!-- <a class="btn" href="#readMore">Read more <i class="i-arrow-right"></i></a> -->
     </div>
     <div class="form">
-      <div class="input-group">
-        <label>First Name</label>
-        <input type="text" class="first-name" />
-      </div>
-      <div class="input-group">
-        <label>Last Name</label>
-        <input type="text" class="last-name" />
+      <div class="input-group wide">
+        <label>Full Name</label>
+        <input type="text" class="full-name" />
       </div>
 
       <div class="input-group wide-on-mobile">
@@ -304,7 +297,7 @@
       </div>
 
       <div class="input-group wide">
-        <a class="btn submit disabled">Submit</a>
+        <a class="btn submit disabled submit-tx-info-form">Submit</a>
       </div>
     </div>
   </div>
@@ -312,10 +305,10 @@
 
 </div>
 
+
 <script>
   const formObject = {
-    "first-name": { value: false, required: true },
-    "last-name": { value: false, required: true },
+    "full-name": { value: false, required: true },
     "dial-code": { value: '1', required: true },
     "email": { value: false, required: true },
     "mobile-number": { value: false, required: true },
@@ -329,40 +322,102 @@
       element.value = formObject[key].value === false ? '' : formObject[key].value
       element.addEventListener("input", (event) => {
         let self = event.target
-        formObject[self.getAttribute('class')].value = self.value
+        let key = self.getAttribute('class')
+        formObject[key].value = self.value
         observeArray()
       })
     }
   }
 
-  function observeArray() {
-    let block = true
+  document.querySelector(".submit.submit-tx-info-form").addEventListener("click", () => {
+    let imagesHTML = ``;
+    for(const img of formObject.attachments.value){
+      imagesHTML+=`<tr><td colspan="2"><img src="${img.src}" title="${img.id}" alt="img" /></td></tr>`
+    }
+    const from = "private-sale@zettahash.com"
+    let email = `<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Email Routed</title>
+    <style>
+    </style>
+  </head>
+  <body>
+    <span class="preheader">Email routed</span>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td colspan="2"><h1>Email Routed for ${from}</h1></td>
+      </tr>
+
+      <tr><td><p>Name:</p></td><td><p>${formObject['full-name'].value}</p></td></tr>
+      <tr><td><p>Email:</p></td><td><p>${formObject['email'].value}</p></td></tr>
+      <tr><td><p>Mobile:</p></td><td><p>+${formObject['dial-code'].value} ${formObject['mobile-number'].value}</p></td></tr>
+      <tr><td><p>ZH Wallet Address:</p></td><td><p>${formObject['address'].value}</p></td></tr>
+      <tr><td><p>Screenshots and images:</p></td></tr>
+      ${imagesHTML}
+
+    </table>
+  </body>
+</html>`
+    fetch("https://api.flat18.co.uk/no-log-mail-router/v1/index.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      body: JSON.stringify({ html: email, recipient: 'zetta@zettahash.org' }),
+    }).then((response) => { response.json() }).then((data) => {
+      // console.log("Success:", data)
+    }).catch((error) => {
+      // console.error("Error:", error)
+    })
+  })
+
+  function validateArrayData(){
+    let block = false
     for (const key of Object.keys(formObject)) {
       let self = String(formObject[key].value)
-      if (formObject[key].value !== false && formObject[key].value.length > 0) {
-        block = false
-        if (key === "email") {
-          if (self.indexOf("@") < 0) { block = true }
-          if (self.indexOf(".") < 0) { block = true }
-        }
-        if (key === "mobile-number") {
-          if (isNaN(self)) { block = true }
-        }
-        if (key === "address") {
-          if (self.length < 42) { block = true }
-          if (self.indexOf("0x") !== 0) { block = true }
-        }
-        if (block === false) {
-          document.querySelector(`.${key}`).parentNode.classList.remove("empty")
+      let selfBool = Boolean(formObject[key].value)
+      let parent = document.querySelector(`.${key}`).parentNode
+      if (selfBool === false && self.length == 0) {
+        block = true
+      }
+      //INPUT-SPECIFIC CHECKS
+      if (key === "full-name") {
+        if (self.indexOf(" ") < 0 || self.indexOf(" ") == self.length - 1) {
+          if (selfBool !== false && self.length > 0) { parent.classList.add("empty") }
+          block = true
         }
       }
-      else {
-        block = true
-        document.querySelector(`.${key}`).parentNode.classList.add("empty")
-        break
+      if (key === "email") {
+        if (self.indexOf("@") < 0 || self.indexOf("@") == self.length - 1 || self.indexOf(".") < 0 || self.indexOf(".") == self.length - 1) {
+          if (selfBool !== false && self.length > 0) { parent.classList.add("empty") }
+          block = true
+        }
+      }
+      if (key === "mobile-number") {
+        if (isNaN(self.replace(/ /g, '').replace(/-/g, ''))) {
+          if (selfBool !== false && self.length > 0) { parent.classList.add("empty") }
+          block = true
+        }
+      }
+      if (key === "address") {
+        if (self.length < 42 || self.indexOf("0x") !== 0) {
+          if (selfBool !== false && self.length > 0) { parent.classList.add("empty") }
+          block = true
+        }
+      }
+      if (block === false) {
+        parent.classList.remove("empty")
       }
     }
-    if (block === false) {
+    return block
+  }
+  function observeArray() {
+    let block = validateArrayData()
+    //AFTER CHECKING ALL CHECK FOR FLAG
+    if (block !== true) {
       document.querySelector(".btn.submit").classList.remove('disabled')
     } else {
       document.querySelector(".btn.submit").classList.add('disabled')
@@ -521,6 +576,7 @@
   })
 </script>
 
+
 <style lang="scss">
   @import './src/css/components/_constants.scss';
 
@@ -534,9 +590,16 @@
     box-shadow: 0 0 4px -1px var(--primary);
     border-radius: 30px;
     background: var(--neutral-9);
+
     /* margin: 40px auto; */
+    .empty {
+      input {
+        box-shadow: 0 0 0 1px var(--red);
+      }
+    }
 
     .input-group {
+
       &.wide {
         grid-column: 1/3;
       }
@@ -570,6 +633,8 @@
 
         &:focus {
           outline: none;
+          box-shadow: 0 0 0 1px var(--primary);
+
         }
       }
 
@@ -591,8 +656,9 @@
       z-index: 2;
 
       &:not(.open) {
-        box-shadow: 1px 0 0 0 var(--neutral-10);
+        box-shadow: inset -1px 0 0 0 var(--neutral-10);
         padding-right: 10px;
+        margin-right: 1px;
       }
     }
 
