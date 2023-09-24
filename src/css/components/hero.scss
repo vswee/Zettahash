@@ -4,34 +4,47 @@
   align-content: center;
   min-height: 380px;
   width: 900px;
-  margin: auto;
+  margin: 60px auto;
   max-width: 80vw;
   position: relative;
   z-index: 2;
-    margin-bottom: 120px;
   &::after {
     content: "";
     position: absolute;
-    height: calc(100% + 180px);
     width: 100vw;
     background: linear-gradient(var(--moss), var(--moss));
     z-index: 0;
     opacity: 0.1;
-    transform: translateY(-110px);
+    height: calc(100% + (var(--margin) * 1.2));
+    transform: translateY(calc( var(--margin) * -.8));
   }
   &::before {
     content: "";
     position: absolute;
-    height: calc(100% + 180px);
     background: url(/src/img/z-stroke.svg);
     z-index: 1;
     width: 100vw;
     background-repeat: no-repeat;
-    transform: translateY(-120px);
     opacity: 0.05;
     background-size: cover;
-    @media (max-width: $content) {
+    // padding-bottom: calc(var(--margin) * .4);
+    height: calc(100% + (var(--margin) * 1.2));
+    transform: translateY(calc( var(--margin) * -.9));
+    @media (max-width: $medium) {
       display: none;
+    }
+  }
+  &::before,
+  &::after {
+    --margin: 200px;
+    @media (max-width: $content) {
+      --margin: 150px;
+    }
+    @media (max-width: $small) {
+      --margin: 100px;
+    }
+    @media (max-width: $x-small) {
+      --margin: 80px;
     }
   }
 
