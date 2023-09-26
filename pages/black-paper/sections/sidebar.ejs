@@ -1,0 +1,184 @@
+<div class="sidebar">
+  <p>Zettahash is giving Bitcoin Mining back to the public!</p>
+  <div class="block">
+    <div class="title">Zettahash Black Paper</div>
+    <div class="link-org">
+      <div class="layer">
+        <span class="label">Disclaimer</span>
+      </div>
+      <div class="layer">
+        <span class="label">Executive Summary</span>
+        <div class="layer">
+          <span class="label">Smart contracts - Their evolution</span>
+          <span class="label">Zettahash Mission</span>
+          <span class="label">Zettahash Vision</span>
+          <span class="label">The Problem Statement</span>
+          <span class="label">The Solution Statement</span>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="label">The Market</span>
+        <div class="layer">
+          <span class="label">Brief about the block chain technology and its applications</span>
+          <span class="label">Cryptocurrency Mining Market Overview</span>
+          <span class="label">Bitcoin Market - Industry Snapshot & Key Buying Criteria</span>
+          <span class="label">Market Segmentation and Scope</span>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="label">The Organisation</span>
+        <div class="layer">
+          <span class="label">Zettahash Overview</span>
+          <span class="label">Features</span>
+          <div class="layer">
+            <span class="label">Smart Design Contract</span>
+            <span class="label">Comprehensive Transparency</span>
+            <span class="label">Zettahash Community Forum</span>
+            <span class="label">Decentralization</span>
+          </div>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="label">Tokenomics</span>
+        <div class="layer">
+          <span class="label">Zettahash Token Basic Information</span>
+          <span class="label">Funding Allocation</span>
+          <span class="label">Tokenomics Supply Allocation</span>
+          <span class="label">Token Release Schedule</span>
+          <span class="label">Terms of Sale</span>
+        </div>
+      </div>
+      <div class="layer">
+        <span class="label">Roadmaps</span>
+      </div>
+      <div class="layer">
+        <span class="label">Team Members</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  for (const label of document.querySelectorAll(".label")) {
+    label.addEventListener("click", (event) => {
+      event.preventDefault()
+      event.stopPropagation()
+      let parent = event.target.parentNode
+      document.querySelectorAll(".active").forEach((f) => { f.classList.remove('active') })
+      document.querySelectorAll(".focused").forEach((f) => { f.classList.remove('focused') })
+      parent.classList.add("focused")
+      if (parent.querySelectorAll(".layer").length > 0) {
+        if (parent.classList.contains('open')) {
+          parent.classList.remove("open")
+        } else {
+          parent.classList.add("open")
+        }
+      } else {
+        event.target.classList.add("active")
+      }
+    })
+  }
+</script>
+
+<style lang="scss">
+  @import './src/css/components/_constants.scss';
+
+
+  .sidebar {
+    max-width: 400px;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    height: 100%;
+    width: 300px;
+    box-shadow: 1px 0 0 0 var(--neutral-5);
+    font-family: $sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 20px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: none;
+    overflow-y: auto;
+
+    p {
+      margin: 0;
+    }
+
+    .block {
+      >.title {
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .link-org {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        .layer {
+          .layer {
+            display: none;
+          }
+
+          .active {
+            /* >.label { */
+              color: var(--blue-1);
+              background: transparent;
+
+              &:hover {
+                color: var(--blue-1);
+                background: transparent;
+              }
+            /* } */
+          }
+
+          &.open {
+            display: grid;
+            gap: 5px;
+
+            >.label {
+              background-color: var(--neutral-7);
+
+              &:hover {
+                background-color: var(--neutral-7);
+              }
+            }
+
+            &.focused {
+              >.label {
+                background-color: var(--blue-03);
+
+                &:hover {
+                  background-color: var(--blue-03);
+                }
+              }
+            }
+
+            >.layer {
+              display: grid;
+              padding-left: 20px;
+              gap: 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .layer {
+    .label {
+      cursor: pointer;
+      padding: 8px 16px;
+      display: block;
+      border-radius: 8px;
+
+      &:hover {
+        background-color: var(--neutral-8);
+      }
+    }
+  }
+
+</style>

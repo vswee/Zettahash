@@ -163,7 +163,8 @@
       .link {
         &:not(:first-of-type) {
           display: inline-flex;
-          font-size: 30px;
+          font-size: 24px;
+          font-family: $sans-serif;
         }
         @for $i from 2 through 10 {
           &:nth-of-type(#{$i}) {
