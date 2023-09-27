@@ -45,8 +45,10 @@
     event.stopPropagation()
   })
   document.body.addEventListener("click", ()=>{
+    try{
     document.querySelector(".menu-trigger").classList.remove('open')
     document.querySelector(".menu").classList.remove('open')
+    }catch(e){}
   })
 
   for(const link of document.querySelectorAll(".menu .link")){

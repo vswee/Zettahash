@@ -5,34 +5,35 @@
 
 
 // build-in-scroll
-for (const el of document.querySelectorAll('.build-in-scroll')) {
-    const progress = 0
-    el.style.setProperty("--pc", `${(progress >=.5?100 :progress*200)}%`)
-    el.style.setProperty("--deg", `${(progress >=.5?100 :progress*200)}deg`)
-    el.style.setProperty("--dec", `${(progress >= .5 ? 1 : progress * 2)}`)
-
-    el.style.setProperty("--pc-raw", `${progress*100}%`)
-    el.style.setProperty("--deg-raw", `${progress*100}deg`)
-    el.style.setProperty("--dec-raw", `${progress}`)
-}
-enterView({
-    selector: '.build-in-scroll',
-    offset: 0.25,
-    enter: function (el) {
-        el.classList.add('build-in');
-    },
-    progress: function (el, progress) {
-        el.style.setProperty("--pc", `${(progress >=.5?100 :progress*200)}%`)
-        el.style.setProperty("--deg", `${(progress >=.5?100 :progress*200)}deg`)
+if (document.querySelectorAll('.build-in-scroll').length > 0) {
+    for (const el of document.querySelectorAll('.build-in-scroll')) {
+        const progress = 0
+        el.style.setProperty("--pc", `${(progress >= .5 ? 100 : progress * 200)}%`)
+        el.style.setProperty("--deg", `${(progress >= .5 ? 100 : progress * 200)}deg`)
         el.style.setProperty("--dec", `${(progress >= .5 ? 1 : progress * 2)}`)
 
-        el.style.setProperty("--pc-raw", `${progress*100}%`)
-        el.style.setProperty("--deg-raw", `${progress*100}deg`)
+        el.style.setProperty("--pc-raw", `${progress * 100}%`)
+        el.style.setProperty("--deg-raw", `${progress * 100}deg`)
         el.style.setProperty("--dec-raw", `${progress}`)
     }
+    enterView({
+        selector: '.build-in-scroll',
+        offset: 0.25,
+        enter: function (el) {
+            el.classList.add('build-in');
+        },
+        progress: function (el, progress) {
+            el.style.setProperty("--pc", `${(progress >= .5 ? 100 : progress * 200)}%`)
+            el.style.setProperty("--deg", `${(progress >= .5 ? 100 : progress * 200)}deg`)
+            el.style.setProperty("--dec", `${(progress >= .5 ? 1 : progress * 2)}`)
 
-});
+            el.style.setProperty("--pc-raw", `${progress * 100}%`)
+            el.style.setProperty("--deg-raw", `${progress * 100}deg`)
+            el.style.setProperty("--dec-raw", `${progress}`)
+        }
 
+    });
+}
 for (const c2c of document.querySelectorAll(".click-to-copy")) {
     c2c.addEventListener("click", (event) => {
         let text = event.target.innerHTML
