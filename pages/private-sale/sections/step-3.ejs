@@ -2,63 +2,59 @@
   <div class="head">
     <h2>Step 3</h2>
     <small><i class="i-shopping-bag"></i> Purchase ZH</small>
-    <a class="btn-link" href="#">Private Sale Terminal <i class="i-external-link"></i></a>
+    <a class="btn-link" href="https://btcpay0.voltageapp.io/apps/2fHS13tKeN3JNJifDCSpqLkNad6f/pos" target="_blank">Private Sale Terminal <i class="i-external-link"></i></a>
+  </div>
+  <div class="text-box centre">
+    <br>
+    <p>Purchase $1,000 to $1,000,000 (USD) of ZH using Bitcoin (BTC).<br>
+      Use the form below or <a class="url" href="https://btcpay0.voltageapp.io/apps/2fHS13tKeN3JNJifDCSpqLkNad6f/pos" target="_blank">tap here</a> to open the terminal in a new tab.
+    </p>
+    <blockquote>
+      <i class="i-alert-triangle"></i>Make note of your transaction hash.<br>You'll need it for the next step.
+    </blockquote>
+    <br>
+  </div>
+  <!-- <img class="macbook0" src="/src/img/macbook0-dark.webp"> -->
+
+
+  <div class="browser-window zoom-into-ui">
+    <div class="window-frame">
+      <div class="window-ui"></div>
+    </div>
+    <iframe src='https://btcpay0.voltageapp.io/apps/2fHS13tKeN3JNJifDCSpqLkNad6f/pos' class="macbook0-content"></iframe>
+    <!-- <iframe class="macbook0-content"
+        src="https://btcpay0.voltageapp.io/apps/nbtKUEJFpAPFjnwAmP9zyYQsF93/crowdfund"></iframe> -->
 
   </div>
-  <div class="flex start devices">
-    <!-- <img class="macbook0" src="/src/img/macbook0-dark.webp"> -->
-    <div class="text-box">
-      <p>Purchase $1,000 to $1,000,000 (USD) of ZH using Bitcoin (BTC)
-      </p>
-      <br>
-      <table class="table table-sm-custom">
-        <tbody>
-          <tr>
-            <td>Investor Level</td>
-            <td>Investment Range</td>
-            <td>Price per ZH</td>
-          </tr>
-          <tr>
-            <td>Terahash</td>
-            <td>$1,000 - $10,000</td>
-            <td>$0.30</td>
-          </tr>
-          <tr>
-            <td>Petahash</td>
-            <td>$10,000 - $100,000</td>
-            <td>$0.20</td>
-          </tr>
-          <tr>
-            <td>Exahash</td>
-            <td>$100,000 - $1,000,000</td>
-            <td>$0.10</td>
-          </tr>
-          <tr>
-            <td>Zettahash</td>
-            <td>$1,000,000<br></td>
-            <td>Max Cap 10,000,000 ZH</td>
-          </tr>
-        </tbody>
-      </table>
-      <br>
-      <blockquote>
-        <i class="i-alert-triangle"></i>Make note of your transaction hash.<br>Think of it as your blockchain
-        transaction
-        receipt.
-      </blockquote>
-    </div>
 
-    <div class="browser-window zoom-into-ui">
-      <div class="window-frame">
-        <div class="window-ui"></div>
-      </div>
-      <iframe class="macbook0-content"
-        src="https://btcpay0.voltageapp.io/apps/nbtKUEJFpAPFjnwAmP9zyYQsF93/crowdfund"></iframe>
-    </div>
-
-  </div>
 </div>
 </div>
+<script>
+  document.querySelector(".generateInvoiceId").addEventListener("click", () => {
+    let number = document.querySelector(".contribution-value").value.replace(/[\D.]/g, '')
+    number = number < 1000 ? 1000 : number
+    let id = postData(url = "https://btcpay0.voltageapp.io/apps/2fHS13tKeN3JNJifDCSpqLkNad6f/pos", data = { 'choiceKey': 'ZH', 'amount': number, 'storeId': "2fHS13tKeN3JNJifDCSpqLkNad6f", 'requiresRefundEmail': 'InheritFromStore' })
+  })
+  async function postData(url = "", data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      // mode: "no-cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      // credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        // "Content-Type": "application/json",
+        'Content-Type': 'application/x-www-form-urlencoded',
+        // "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(data), // body data type must match "Content-Type" header
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+  }
+</script>
 <style lang="scss">
   @import './src/css/components/_constants.scss';
 
@@ -110,6 +106,7 @@
           padding-left: 15px;
           color: var(--neutral-4);
           font-weight: 600;
+
           @media (max-width:$small) {
             font-size: 12px;
             color: var(--yellow);
@@ -200,14 +197,14 @@
 
   .browser-window {
     position: relative;
-    width: 450px;
+    width: $content;
     margin: auto;
     max-width: 90vw;
     display: grid;
-    aspect-ratio: 9/16;
+    aspect-ratio: 16/12;
     border-radius: 10px;
     background: var(--neutral-7);
-    box-shadow: 0 0 80px -40px var(--yellow);
+    box-shadow: 0 20px 80px -20px var(--black);
     contain: content;
     grid-template-rows: auto 1fr;
 
