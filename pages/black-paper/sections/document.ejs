@@ -1,0 +1,80 @@
+<div data-id="Overview">
+  <h1>Overview</h1>
+  <h2>Subheading</h2>
+  <p>We propose creating a new type of transparent and global publicly traded Bitcoin mining company. Instead of using
+    traditional company "shares," we use a decentralized token, built first on the Ethereum blockchain, representing
+    ownership in the company to it's token holders.</p>
+</div>
+
+<div data-id="not-found">
+  <h1></h1>
+  <h2>404 Error</h2>
+  <p>The resource you are looking for is missing or not available.</p>
+</div>
+
+<style lang="scss">
+  @import './src/css/components/_constants.scss';
+
+  div[data-id] {
+    &:not(.open) {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 0px;
+      width: 0px;
+      overflow: hidden;
+    }
+
+    &.open {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto 0 auto;
+      opacity: 0;
+      animation: slideInUp 200ms 50ms ease-in-out forwards 1;
+      flex-direction: column;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 40px 5vw;
+      max-width: 100vw;
+      width: 100%;
+      > * {
+      width: calc(100vw - 400px);
+      max-width: $content;
+      }
+      h1 {
+        font-weight: 800;
+        font-family: $sans-serif;
+        font-size: $font-large;
+        margin: .5rem 0;
+      }
+
+      h2 {
+        font-weight: 500;
+        font-family: $sans-serif;
+        font-size: $font-medium;
+        color: var(--neutral-4);
+        margin: .5rem 0;
+      }
+
+      p {
+        font-weight: 400;
+        font-family: $sans-serif;
+        font-size: $font-small;
+        margin: .5rem 0;
+      }
+
+      @media (max-width:$small) {
+        grid-column: 1/3;
+        grid-row: 2/3;
+        > * {
+      width: 100%;
+      max-width: $content;
+      }
+      }
+    }
+  }
+
+</style>

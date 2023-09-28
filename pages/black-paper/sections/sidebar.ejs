@@ -4,11 +4,14 @@
     <div class="title">Zettahash Black Paper</div>
     <div class="link-org">
       <div class="layer">
+        <span class="label focused">Overview</span>
+      </div>
+      <div class="layer">
         <span class="label">Disclaimer</span>
       </div>
       <div class="layer">
-        <span class="label for-accordion">Executive Summary</span>
-        <div class="layer">
+        <span class="label accordion" for="Executive-Summary">Executive Summary</span>
+        <div class="layer nested" for="Executive-Summary">
           <span class="label">Smart contracts - Their evolution</span>
           <span class="label">Zettahash Mission</span>
           <span class="label">Zettahash Vision</span>
@@ -17,8 +20,8 @@
         </div>
       </div>
       <div class="layer">
-        <span class="label for-accordion">The Market</span>
-        <div class="layer">
+        <span class="label accordion" for="The-Market">The Market</span>
+        <div class="layer nested" for="The-Market">
           <span class="label">Brief about the block chain technology and its applications</span>
           <span class="label">Cryptocurrency Mining Market Overview</span>
           <span class="label">Bitcoin Market - Industry Snapshot & Key Buying Criteria</span>
@@ -26,11 +29,11 @@
         </div>
       </div>
       <div class="layer">
-        <span class="label for-accordion">The Organisation</span>
-        <div class="layer">
+        <span class="label accordion" for="The-Organization">The Organization</span>
+        <div class="layer nested" for="The-Organization">
           <span class="label">Zettahash Overview</span>
-          <span class="label for-accordion">Features</span>
-          <div class="layer">
+          <span class="label accordion" for="Features">Features</span>
+          <div class="layer nested" for="Features">
             <span class="label">Smart Design Contract</span>
             <span class="label">Comprehensive Transparency</span>
             <span class="label">Zettahash Community Forum</span>
@@ -39,8 +42,8 @@
         </div>
       </div>
       <div class="layer">
-        <span class="label for-accordion">Tokenomics</span>
-        <div class="layer">
+        <span class="label accordion" for="Tokenomics">Tokenomics</span>
+        <div class="layer nested" for="Tokenomics">
           <span class="label">Zettahash Token Basic Information</span>
           <span class="label">Funding Allocation</span>
           <span class="label">Tokenomics Supply Allocation</span>
@@ -60,80 +63,6 @@
 
 <script>
 
-  for (const label of document.querySelectorAll(".layer")) {
-    for (const forAcc of label.querySelectorAll(".for-accordion")) {
-      let index = 0
-      forAcc.setAttribute("index", index)
-      index++
-    }
-    label.addEventListener("click", (event) => {
-      event.preventDefault()
-      event.stopPropagation()
-
-      let parent = event.target.parentNode
-      let index = event.target.getAttribute("index")
-      // console.log(parent, event.target, index)
-
-      let target = parent.querySelectorAll(".layer")[index]
-
-      for (const focused of document.querySelectorAll(".focused")) {
-        // if (event.target.parentNode !== focused.parentNode) {
-        //   // focused.classList.remove('focused')
-        //   continue
-        // }
-        // if (event.target.parentNode.classList.contains('open') && event.target.parentNode.parentNode.classList.contains('open')) {
-        //   // focused.classList.remove('focused')
-        //   continue
-
-        //   // return
-        // }
-        focused.classList.remove('focused')
-
-      }
-      // focused.classList.remove('focused')
-
-      event.target.classList.add("focused")
-
-      if (event.target.classList.contains("for-accordion")) {
-
-        if (target.classList.contains('open')) {
-          target.classList.remove("open")
-        } else {
-          target.classList.add("open")
-        }
-      }
-      else {
-      for(const fellowAccords of event.target.parentNode.querySelectorAll(".for-accordion")) {
-        let ind = fellowAccords.getAttribute("index")
-        for(const fellowAccordsLayers of event.target.parentNode.querySelectorAll(".layer")){fellowAccordsLayers.classList.remove("open")}
-      }
-        // if (target.classList.contains('focused')) {
-        //   target.classList.remove("focused")
-        // } else {
-        //   target.classList.add("focused")
-        // }
-      }
-      // for (const open of document.querySelectorAll(".open")) {
-      //   open.classList.remove('open')
-      // }
-      // event.target.classList.add("open")
-
-      // }
-      // let parent = event.target.parentNode
-      // document.querySelectorAll(".active").forEach((f) => { f.classList.remove('active') })
-      // document.querySelectorAll(".focused").forEach((f) => { f.classList.remove('focused') })
-      // parent.classList.add("focused")
-      // if (parent.querySelectorAll(".layer").length > 0) {
-      //   if (parent.classList.contains('open')) {
-      //     parent.classList.remove("open")
-      //   } else {
-      //     parent.classList.add("open")
-      //   }
-      // } else {
-      //   event.target.classList.add("active")
-      // }
-    })
-  }
 </script>
 
 <style lang="scss">
@@ -156,7 +85,15 @@
     flex-direction: column;
     overflow-x: none;
     overflow-y: auto;
-
+    @media (max-width:$small) {
+    transition:200ms ease-in-out;
+    position: relative;
+    z-index: 2;
+    background-color: var(--neutral-8);
+      &:not(.open){
+        transform: translateX(-400px);
+      }
+    }
     p {
       margin: 0;
     }
@@ -177,77 +114,107 @@
     }
   }
 
-  .layer {
-    >.layer {
-      padding-left: 20px;
-      display: none;
 
-      &.open {
-        display: grid;
-        margin-top: 5px;
-        margin-bottom: 5px;
-        gap: 5px;
 
-        >.label {
-          &:not(.for-accordion) {
-            &:not(.active) {}
 
-          }
-        }
+  .label {
+    cursor: pointer;
+    padding: 8px 16px;
+    display: block;
+    border-radius: 8px;
+    color: var(--neutral-3);
+
+    &:hover {
+      background-color: var(--neutral-8);
+      color: var(--neutral-2);
+    }
+
+    &.focused {
+      color: var(--blue-2);
+
+      &:hover {
+        background-color: transparent;
+        color: var(--blue-2);
       }
     }
 
-    .label {
-      cursor: pointer;
-      padding: 8px 16px;
-      display: block;
-      border-radius: 8px;
+    &.accordion {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
 
-      &:hover {
-        background-color: var(--neutral-8);
-      }
+      &.open {
+        color: var(--neutral-2);
+        align-items: unset;
 
-      &.for-accordion {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        align-items: center;
-
-        &.focused {
-          align-items: unset;
-          color: var(--neutral-1);
-          position:relative;
-          &:hover{background-color: transparent;}
-          &::before{
-            content: '';
-            height: 100%;
-            width:100%;
-            top:0;
-            left:0;
-            position: absolute;
-            display:block;
-            border-radius:10px;
-          background-color: var(--blue-01);
-          opacity:.2;
-          z-index: -1;
-          }
-          &::after {
-            transform: rotate(45deg);
-          }
+        &::before {
+          background-color: var(--blue-02);
+          opacity: .2;
         }
 
         &::after {
-          content: '';
-          display: block;
-          height: 10px;
-          width: 10px;
-          box-shadow: 2px 2px 0 0;
-          transform: rotate(-45deg);
+          transform: rotate(45deg);
         }
       }
 
       &.focused {
-        color: var(--blue-3);
+        color: var(--white);
+        position: relative;
 
+        &::before {
+          background-color: var(--blue-02);
+          opacity: .3;
+        }
+      }
+
+      &.open,
+      &.focused {
+        position: relative;
+
+        &::before {
+          content: '';
+          height: 100%;
+          width: 100%;
+          top: 0;
+          left: 0;
+          position: absolute;
+          display: block;
+          border-radius: 10px;
+          z-index: -1;
+        }
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        height: 10px;
+        width: 10px;
+        box-shadow: 2px 2px 0 0;
+        transform: rotate(-45deg);
+        transition: .2s ease;
+      }
+    }
+  }
+
+  .nested {
+    padding-left: 20px;
+    display: none;
+
+    &.open {
+      display: grid;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      gap: 5px;
+
+      >.label {
+        &:not(.accordion) {
+          &:not(.active) {}
+
+        }
       }
     }
   }

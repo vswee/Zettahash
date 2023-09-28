@@ -1,4 +1,5 @@
 <div class="blackpaper-nav nav">
+  <a class="sidebar-trigger"><i class="i-menu"></i><i class="i-x"></i></a>
   <a href="/" class="logo animated">
     <svg width="100%" height="100%" viewBox="0 0 833 790" version="1.1" xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
@@ -69,6 +70,17 @@
   const nav = document.querySelector(".nav")
   const newNav = document.querySelector(".blackpaper-nav")
   nav.replaceWith(newNav)
+
+  document.querySelector(".sidebar-trigger").addEventListener("click", (event) => {
+    if (event.target.classList.contains("open")) { 
+      event.target.classList.remove("open") 
+      document.querySelector(".sidebar").classList.remove("open") 
+    }
+    else { 
+      event.target.classList.add("open") 
+      document.querySelector(".sidebar").classList.add("open") 
+    }
+  })
 </script>
 
 <style lang="scss">
@@ -90,8 +102,38 @@
       background: transparent;
       width: 100vw;
       box-shadow: 0 1px 0 0 var(--neutral-5);
-    }
 
+      @media (max-width:$small) {
+        grid-template-columns: auto 1fr auto;
+      }
+
+      .sidebar-trigger {
+        display: none;
+
+        @media (max-width:$small) {
+          display: block;
+        }
+
+        i {
+          pointer-events: none;
+          font-size: 30px;
+          color: var(--neutral-3);
+          animation: popIn 500ms ease forwards 1;
+        }
+
+        &.open {
+          .i-menu {
+            display: none;
+          }
+        }
+
+        &:not(.open) {
+          .i-x {
+            display: none;
+          }
+        }
+      }
+    }
 
     .content {
       width: 100%;
