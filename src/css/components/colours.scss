@@ -35,6 +35,9 @@
   --primary: var(--blue-1);
   --secondary: var(--blue-2);
   --yellow: var(--blue-3);
+  &.content{
+    --neutral-8: var(--blue-03);
+  }
 }
 
 body{

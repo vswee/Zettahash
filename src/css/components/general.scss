@@ -39,6 +39,7 @@ a {
   line-height: 1;
   gap: 10px;
   border-radius: 100px;
+  font-family: $sans-serif;
   &:not(.disabled) {
     &:hover {
       background: var(--secondary);
@@ -52,6 +53,7 @@ a {
 }
 
 .btn-link {
+  font-family: $sans-serif;
   color: var(--secondary);
   box-shadow: 0 0 0 1px;
   padding: 5px 15px;
@@ -386,11 +388,12 @@ a {
       background-color: var(--neutral-8);
       border-radius: 30px;
       aspect-ratio: 1/1;
+      position: relative;
       &.clip {
         overflow: hidden;
       }
       &.stage {
-        background: radial-gradient(var(--neutral-7), var(--neutral-5));
+        background: radial-gradient(var(--neutral-7), var(--neutral-8));
       }
       @media (max-width: $small) {
         grid-row: 1/2;
@@ -403,12 +406,37 @@ a {
         transform: translateX(-50%) translateY(calc(-50% - (var(--pc) * 0.1))) rotate(var(--deg-raw));
         margin-top: 125%;
       }
-      #chart-0 {
-        transform: rotate3d(2, 2, 0, calc(66deg - (var(--deg-raw) * 0.6))) scale(1.2)
+      .img {
+        width: 100%;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        &.right {
+          &::after{
+            content: '';
+            transform: rotate3d(-2, -2, -0.5, calc(90deg - (var(--deg-raw) * 0.9))) scale(.8) translateX(calc(0% + (var(--pc-raw) * 0.15)));
+            box-shadow: 0 0 0 5px var(--primary);
+            display: block;
+            z-index: -1;
+            position: relative;
+            width: 560px;
+            max-width: 80vw;
+            border-radius: 30px;
+            aspect-ratio: 1/1;
+            transform-origin: center;
+            opacity: .2;
+          }
+        }
+      }
+      #chart-0,
+      .right {
+        transform: rotate3d(2, 2, 0.5, calc(90deg - (var(--deg-raw) * 0.9))) scale(1.2)
           translateX(calc(0% + (var(--pc-raw) * 0.1)));
       }
-      #chart-1 {
-        transform: rotate3d(2, 2, 0, calc(-66deg + (var(--deg-raw) * 0.6))) scale(1.2)
+      #chart-1,
+      .left {
+        transform: rotate3d(2, 2, 0.5, calc(-90deg + (var(--deg-raw) * 0.9))) scale(1.2)
           translateX(calc(0% - (var(--pc-raw) * 0.1)));
       }
     }
@@ -431,7 +459,7 @@ a {
     &.centre {
       text-align: center;
       justify-items: center;
-      blockquote{
+      blockquote {
         margin-left: auto;
         margin-right: auto;
         width: max-content;
