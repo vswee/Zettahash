@@ -371,7 +371,7 @@ a {
   }
   .flex {
     display: flex;
-    gap: 40px;
+    gap: 100px;
     margin-top: 60px;
     &.start {
       .text-box {
@@ -381,6 +381,9 @@ a {
     @media (max-width: $small) {
       display: grid;
       justify-content: center;
+    }
+    @media (max-width: $medium) {
+      gap: 50px;
     }
     .graphic {
       width: #{($content / 2) - 40px};
@@ -413,9 +416,10 @@ a {
         top: 0;
         bottom: 0;
         &.right {
-          &::after{
-            content: '';
-            transform: rotate3d(-2, -2, -0.5, calc(90deg - (var(--deg-raw) * 0.9))) scale(.8) translateX(calc(0% + (var(--pc-raw) * 0.15)));
+          &::after {
+            content: "";
+            transform: rotate3d(-2, -2, -0.5, calc(90deg - (var(--deg-raw) * 0.9))) scale(0.8)
+              translateX(calc(0% + (var(--pc-raw) * 0.15)));
             box-shadow: 0 0 0 5px var(--primary);
             display: block;
             z-index: -1;
@@ -425,7 +429,7 @@ a {
             border-radius: 30px;
             aspect-ratio: 1/1;
             transform-origin: center;
-            opacity: .2;
+            opacity: 0.2;
           }
         }
       }
