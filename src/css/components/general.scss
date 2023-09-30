@@ -95,7 +95,24 @@ a {
     margin-bottom: 80px;
     margin-top: 80px;
   }
-
+  h1 {
+    font-size: 60px;
+    max-width: 80vw;
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: $content) {
+      font-size: 50px;
+    }
+    @media (max-width: $small) {
+      font-size: 40px;
+    }
+    @media (max-width: $x-small) {
+      font-size: 30px;
+    }
+  }
   h2,
   h3,
   h4,
@@ -159,6 +176,7 @@ a {
     text-align: center;
     margin: 1rem auto;
   }
+
   > small,
   .head small {
     margin: 1rem auto;
