@@ -67,6 +67,7 @@
   border-radius: $content;
   z-index: 10;
   position: relative;
+  gap: 20px;
   @media (max-width: $content) {
     border-radius: 0px;
     margin: 0;
@@ -90,11 +91,12 @@
     flex-direction: row;
     gap: 20px;
     align-items: center;
+    margin-left: auto;
     // font-family: $sans-serif;
     .link {
       display: inline-flex;
       align-items: center;
-      font-size: calc(22px / #{$r});
+      // font-size: calc(22px / #{$r});
       gap: 0.5rem;
       line-height: 1;
       opacity: 0.5;

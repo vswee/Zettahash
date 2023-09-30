@@ -12,7 +12,7 @@
     content: "";
     position: absolute;
     width: 100vw;
-    background: linear-gradient(var(--moss), var(--moss));
+    background: linear-gradient(var(--primary), var(--primary));
     z-index: 0;
     opacity: 0.1;
     height: calc(100% + (var(--margin) * 1.2));
@@ -101,7 +101,7 @@
         }
         .type-target-2 {
           font-weight: 800;
-          background: -webkit-linear-gradient(60deg, var(--primary), var(--yellow));
+          background: -webkit-linear-gradient(-60deg, var(--secondary), var(--yellow)220%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }

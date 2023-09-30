@@ -32,11 +32,15 @@
 // }
 
 .blue{
-  --primary: var(--blue-1);
-  --secondary: var(--blue-2);
-  --yellow: var(--blue-3);
+  // --primary: var(--blue-1);
+  // --secondary: var(--blue-2);
+  // --yellow: var(--blue-3);
+  --primary: var(--green-1);
+  --secondary: var(--green-2);
+  --yellow: var(--green-3);
   &.content{
-    --neutral-8: var(--blue-03);
+    --neutral-8: var(--green-2);
+    --neutral-7: var(--black);
   }
 }
 
@@ -59,9 +63,9 @@ body{
   --neutral-1: #dddddd;
   --neutral-0: #fafafa;
 
-  --green-1: #66FF00;
-  --green-2: #46CB18;
-  --green-3: #FFFF00;
+  --green-1: #0062ff;
+  --green-2: #3783ff;
+  --green-3: #ff337e;
 
   --blue-01: #0043FF;
   --blue-02: #0017FF;

@@ -251,6 +251,9 @@ a {
     .item {
       h3 {
         font-size: 30px;
+        background: -webkit-linear-gradient(-60deg, var(--secondary), var(--yellow) 220%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         @media (max-width: $content) {
           font-size: 28px;
         }
@@ -304,7 +307,8 @@ a {
       gap: 20px;
       padding: 20px;
       border-radius: 20px;
-      background-color: var(--neutral-8);
+      background-color: var(--neutral-10);
+      color: var(--neutral-3);
       width: calc(30vw - 60px);
       margin-bottom: auto;
       &:first-of-type {
@@ -352,7 +356,8 @@ a {
       gap: 20px;
       padding: 20px;
       border-radius: 20px;
-      background-color: var(--neutral-8);
+      background-color: var(--neutral-10);
+      color: var(--neutral-3);
       width: calc(25vw - 60px);
       margin-bottom: auto;
       transition: 100ms ease;
@@ -406,7 +411,7 @@ a {
     .graphic {
       width: #{($content / 2) - 40px};
       max-width: 80vw;
-      background-color: var(--neutral-8);
+      background-color: var(--black);
       border-radius: 30px;
       aspect-ratio: 1/1;
       position: relative;
@@ -414,7 +419,7 @@ a {
         overflow: hidden;
       }
       &.stage {
-        background: radial-gradient(var(--neutral-7), var(--neutral-8));
+        background: radial-gradient(var(--neutral-7), var(--black));
       }
       @media (max-width: $small) {
         grid-row: 1/2;
@@ -424,7 +429,8 @@ a {
         min-height: 200%;
         margin-left: 50%;
         transition: 100ms ease;
-        transform: translateX(-50%) translateY(calc(-50% - (var(--pc) * 0.1))) rotate(var(--deg-raw));
+        transform: translateX(-50%) translateY(calc(-50% - (var(--pc) * 0.1))) rotate(calc(60deg + var(--deg-raw)));
+        opacity: calc(1 - (var(--dec-raw) * 1));
         margin-top: 125%;
       }
       .img {
@@ -453,13 +459,16 @@ a {
       }
       #chart-0,
       .right {
-        transform: rotate3d(2, 2, 0.5, calc(90deg - (var(--deg-raw) * 0.9))) scale(1.2)
-          translateX(calc(0% + (var(--pc-raw) * 0.1)));
+        transform: rotate3d(-2, 2, 0.5, calc(90deg - (var(--deg-raw) * 0.9))) scale(1.2)
+          translateX(calc(20% - (var(--pc-raw) * 0.15)));
+        transform-style: preserve-3d;
       }
       #chart-1,
       .left {
-        transform: rotate3d(2, 2, 0.5, calc(-90deg + (var(--deg-raw) * 0.9))) scale(1.2)
-          translateX(calc(0% - (var(--pc-raw) * 0.1)));
+        transform: rotateY(calc(-60deg + (var(--deg-raw) * 0.6))) rotateX(calc(-90deg + (var(--deg-raw) * 0.9)))
+          rotateZ(calc(-20deg + (var(--deg-raw) * 0.2))) scale(1.2) translateX(calc(-20% + (var(--pc-raw) * 0.15)));
+        // transform: rotate3d(2, 2, 0.5, calc(-90deg + (var(--deg-raw) * 0.9))) scale(1.2) translateX(calc(0% - (var(--pc-raw) * 0.1)));
+        transform-style: preserve-3d;
       }
     }
   }
