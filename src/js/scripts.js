@@ -13,7 +13,7 @@ if (document.querySelectorAll('.build-in-scroll').length > 0) {
         el.style.setProperty("--dec", `${(progress >= .5 ? 1 : progress * 2)}`)
 
         el.style.setProperty("--pc-raw", `${progress * 100}%`)
-        el.style.setProperty("--deg-raw", `${progress * 100}deg`)
+        el.style.setProperty("--deg-raw", `${progress * 360}deg`)
         el.style.setProperty("--dec-raw", `${progress}`)
     }
     enterView({
@@ -24,11 +24,11 @@ if (document.querySelectorAll('.build-in-scroll').length > 0) {
         },
         progress: function (el, progress) {
             el.style.setProperty("--pc", `${(progress >= .5 ? 100 : progress * 200)}%`)
-            el.style.setProperty("--deg", `${(progress >= .5 ? 100 : progress * 200)}deg`)
+            el.style.setProperty("--deg", `${(progress >= .5 ? 360 : progress * 720)}deg`)
             el.style.setProperty("--dec", `${(progress >= .5 ? 1 : progress * 2)}`)
 
             el.style.setProperty("--pc-raw", `${progress * 100}%`)
-            el.style.setProperty("--deg-raw", `${progress * 100}deg`)
+            el.style.setProperty("--deg-raw", `${progress * 360}deg`)
             el.style.setProperty("--dec-raw", `${progress}`)
         }
 
